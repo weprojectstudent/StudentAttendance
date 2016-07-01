@@ -21,7 +21,7 @@ import com.example.kittichot.studentattendance.R;
 import com.example.kittichot.studentattendance.RegisterTABLE;
 import com.example.kittichot.studentattendance.StudentTABLE;
 import com.example.kittichot.studentattendance.SubjectTABLE;
-import com.example.kittichot.studentattendance.TermTABLE;
+import com.example.kittichot.studentattendance.TeachdetailTABLE;
 import com.example.kittichot.studentattendance.broadcast_receivers.NotificationEventReceiver;
 
 import org.apache.http.NameValuePair;
@@ -39,7 +39,7 @@ import java.util.ArrayList;
  *
  */
 public class NotificationIntentService extends IntentService {
-    private TermTABLE objTermTABLE;
+    private TeachdetailTABLE objTeachdetailTABLE;
     private SubjectTABLE objSubjectTABLE ;
     private HomeworkTABLE objHomeworkTABLE;
     private StudentTABLE objStudentTABLE;
@@ -191,7 +191,7 @@ public class NotificationIntentService extends IntentService {
     }
 
     private void setArray() {
-        objTermTABLE = new TermTABLE(this);
+        objTeachdetailTABLE = new TeachdetailTABLE(this);
         objSubjectTABLE = new SubjectTABLE(this);
         objHomeworkTABLE = new HomeworkTABLE(this);
         objStudentTABLE = new StudentTABLE(this);
@@ -200,11 +200,11 @@ public class NotificationIntentService extends IntentService {
         objChecknamestudentTABLE = new ChecknamestudentTABLE(this);
         objHomeworksendingTABLE = new HomeworksendingTABLE(this);
         //term
-        strTermID = objTermTABLE.listTermIDbackup();
-        strsubjectID = objTermTABLE.listSubjectIDbackup();
-        strTermYear = objTermTABLE.listTermyearbackup();
-        strTermStatus = objTermTABLE.listTermstatusbackup();
-        strTeacherTerm = objTermTABLE.listTermTeacherbackup();
+        strTermID = objTeachdetailTABLE.listTermIDbackup();
+        strsubjectID = objTeachdetailTABLE.listSubjectIDbackup();
+        strTermYear = objTeachdetailTABLE.listTermyearbackup();
+        strTermStatus = objTeachdetailTABLE.listTermstatusbackup();
+        strTeacherTerm = objTeachdetailTABLE.listTermTeacherbackup();
         //term
         //subject
         strListIDsubject =objSubjectTABLE.listSubjectbackup();
