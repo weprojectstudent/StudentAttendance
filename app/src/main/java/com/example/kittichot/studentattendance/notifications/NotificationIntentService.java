@@ -3,9 +3,11 @@ package com.example.kittichot.studentattendance.notifications;
 import android.app.AlertDialog;
 import android.app.IntentService;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.StrictMode;
 import android.support.v4.app.NotificationCompat;
@@ -47,6 +49,7 @@ public class NotificationIntentService extends IntentService {
     private RegisterTABLE objRegisterTABLE;
     private ChecknamestudentTABLE objChecknamestudentTABLE;
     private HomeworksendingTABLE objHomeworksendingTABLE;
+
     private String[] strTermID,strsubjectID, strTermYear,strTermStatus,strTeacherTerm;//term
     private String[] strHWSDID,strHWSDHWID, strHWSDRegisID,strHWSDdatesend,strHWSDStatus;//Homeworksending
     private String[] strChecknameID,strChecknameIDREGIS, strChecknameDATE,strChecknameStatus;//Checkname
@@ -135,14 +138,18 @@ public class NotificationIntentService extends IntentService {
         getnumsubject = strListIDsubject.length;
        getnumterm = strTermID.length;
         getsum = getnumcheckname + getnumRegis + getnumHW + getnumAlert + getnumsubject + getnumterm+getnumHomeworkSending;
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(ACTION_DELETE));
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,intent, 0);
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setContentTitle("Student Attendance synchronize")
                 .setAutoCancel(true)
                 .setColor(getResources().getColor(R.color.colorAccent))
                 .setTicker("มีการ synchronize ไปยัง server ")
                 .setContentText("ทำการ synchronize data ไปยัง server")
+                .setContentIntent(pendingIntent)
                 .setSmallIcon(R.drawable.notification_icon);
         builder.setDeleteIntent(NotificationEventReceiver.getDeleteIntent(this));
+
 
         final NotificationManager manager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
         new Thread(new Runnable() {
@@ -162,6 +169,7 @@ public class NotificationIntentService extends IntentService {
                 manager.notify(id,builder.build());
             }
         }).start();
+
     }
 
     public void showAlertDialog(Context context, String title, String message, Boolean status) {
