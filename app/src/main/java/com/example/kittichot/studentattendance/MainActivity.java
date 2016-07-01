@@ -345,8 +345,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 String strHomeworksavethedate = objJSONObject.getString("homework_savethedate");
                 String strHomeworkdatesent = objJSONObject.getString("homework_datesent");
                 int intHomeworkStatus = objJSONObject.getInt("homework_status");
-                long valueSubject = objHomeworkTABLE.addValueToHomework(strHomeworktitle,
-                        strHomeworkdetails, strHomeworksavethedate, strHomeworkdatesent, intHomeworkStatus);
+                long valueSubject = objHomeworkTABLE.addValueToHomeworkUpload(Integer.parseInt(strHomeworkID),strHomeworktitle,
+                        strHomeworkdetails, objDateThai.dateThai(strHomeworksavethedate), objDateThai.dateThai(strHomeworkdatesent), intHomeworkStatus);
             }//for
 
         } catch (Exception e) {

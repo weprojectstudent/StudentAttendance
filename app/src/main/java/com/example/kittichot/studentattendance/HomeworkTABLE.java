@@ -303,7 +303,7 @@ public class HomeworkTABLE {
         cursor.moveToFirst();
         strlistDatesave = new String[cursor.getCount()];
         for (int i = 0; i < cursor.getCount(); i++) {
-            strlistDatesave[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SAVEDATE_Homework));
+            strlistDatesave[i] = objDateThai.dateThaiUPloadValue(cursor.getString(cursor.getColumnIndex(COLUMN_SAVEDATE_Homework)));
             cursor.moveToNext();
 
         }//for
@@ -318,7 +318,7 @@ public class HomeworkTABLE {
         cursor.moveToFirst();
         strlistDatesent = new String[cursor.getCount()];
         for (int i = 0; i < cursor.getCount(); i++) {
-            strlistDatesent[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SENTDATE_Homework));
+            strlistDatesent[i] = objDateThai.dateThaiUPloadValue(cursor.getString(cursor.getColumnIndex(COLUMN_SENTDATE_Homework)));
             cursor.moveToNext();
 
         }//for
@@ -342,8 +342,20 @@ public class HomeworkTABLE {
         return strlistDatesent;
     }//listStatusHWbackup
     public long addValueToHomework(String strTitle, String strDetail,String datesave,String datesent, int strStatus) {
+    ContentValues objContentValues = new ContentValues();
+    //objContentValues.put(COLUMN_ID_Homework, intID);
+    objContentValues.put(COLUMN_TITLE_Homework, strTitle);
+    objContentValues.put(COLUMN_DETAILS_Homework, strDetail);
+    objContentValues.put(COLUMN_SAVEDATE_Homework,datesave);
+    objContentValues.put(COLUMN_SENTDATE_Homework, datesent);
+    //objContentValues.put(COLUMN_TERMID_Homework, strTermID);
+    objContentValues.put(COLUMN_STATUS_Homework, strStatus);
+    return writerSQLite.insert(TABLE_Homework, null, objContentValues);
+}//addvalue
+
+    public long addValueToHomeworkUpload(int intID,String strTitle, String strDetail,String datesave,String datesent, int strStatus) {
         ContentValues objContentValues = new ContentValues();
-        //objContentValues.put(COLUMN_ID_Homework, intID);
+        objContentValues.put(COLUMN_ID_Homework, intID);
         objContentValues.put(COLUMN_TITLE_Homework, strTitle);
         objContentValues.put(COLUMN_DETAILS_Homework, strDetail);
         objContentValues.put(COLUMN_SAVEDATE_Homework,datesave);

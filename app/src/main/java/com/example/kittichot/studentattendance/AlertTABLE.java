@@ -349,7 +349,7 @@ public String[] listDatealertHIDE(){
         cursor.moveToFirst();
         strlistDateSave = new String[cursor.getCount()];
         for (int i = 0; i < cursor.getCount(); i++) {
-            strlistDateSave[i] = cursor.getString(cursor.getColumnIndex(COLUMN_SAVADATE_ALERT));
+            strlistDateSave[i] = objDateThai.dateThaiUPloadValue(cursor.getString(cursor.getColumnIndex(COLUMN_SAVADATE_ALERT)));
             cursor.moveToNext();
 
         }//for
@@ -362,7 +362,7 @@ public String[] listDatealertHIDE(){
         cursor.moveToFirst();
         strlistdatealert = new String[cursor.getCount()];
         for (int i = 0; i < cursor.getCount(); i++) {
-            strlistdatealert[i] = cursor.getString(cursor.getColumnIndex(COLUMN_DATEALERT_ALERT));
+            strlistdatealert[i] = objDateThai.dateThaiUPloadValue(cursor.getString(cursor.getColumnIndex(COLUMN_DATEALERT_ALERT)));
             cursor.moveToNext();
 
         }//for
