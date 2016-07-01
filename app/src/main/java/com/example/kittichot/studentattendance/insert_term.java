@@ -80,7 +80,7 @@ public class insert_term extends ActionBarActivity {
         //YEAR
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
-        ArrayList<String> arrayList = new ArrayList<String>();
+        final ArrayList<String> arrayList = new ArrayList<String>();
         int stryear = Integer.parseInt(dateThai.yearThai(year+1)) ;
         for (int i = 1; i < 7; i++) {
             if (i % 2 == 0) {
@@ -98,7 +98,7 @@ public class insert_term extends ActionBarActivity {
         strTermYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                getstrTermYear = arrayList.get(position);
             }
 
             @Override
@@ -126,7 +126,7 @@ public class insert_term extends ActionBarActivity {
         putExtraUser = strTextShowUser;
         //getstrtxtIDTerm = strIDTerm.getText().toString().trim();
         getstrSpinner = strSpinnerID;
-        //getstrTermYear = strTermYear.getText().toString().trim();
+
         getstrUsernameTeacher =putExtraUser;
         if ( getstrSpinner.equals("") || getstrUsernameTeacher.equals("") || getstrTermYear.equals("")) {
             MyAlertDialog objMyAlertDialog = new MyAlertDialog();

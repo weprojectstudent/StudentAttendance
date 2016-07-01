@@ -66,7 +66,7 @@ public class StudentTABLE {
 
         String listroom[] = null;
         Cursor cursor = readSQLite.query(STUDENT_TABLE, new String[]{COLUMN_NAME_STUDENT},
-                COLUMN_CLASSROOM_STUDENT + "=?", new String[]{s}, null, null, null, null);
+                COLUMN_ID_STUDENT + "=?", new String[]{s}, null, null, null, null);
         cursor.moveToFirst();
         listroom = new String[cursor.getCount()];
         for (int i = 0; i < cursor.getCount(); i++) {
@@ -82,7 +82,7 @@ public class StudentTABLE {
 
         String listroom[] = null;
         Cursor cursor = readSQLite.query(STUDENT_TABLE, new String[]{COLUMN_SURNAME_STUDENT},
-                COLUMN_CLASSROOM_STUDENT + "=?", new String[]{s}, null, null, null, null);
+                COLUMN_ID_STUDENT + "=?", new String[]{s}, null, null, null, null);
         cursor.moveToFirst();
         listroom = new String[cursor.getCount()];
         for (int i = 0; i < cursor.getCount(); i++) {

@@ -38,11 +38,11 @@ public class RegisterTABLE {
         objCursor.close();
             return listRegisID;
     }//LISTREGISTERID
-    public String[] ListRegisIDStudent() {
+    public String[] RegisIDStudent(String IDStudent,String TERM) {
         String listRegisIDStudent[] = null;
         Cursor objCursor = readSQLite.query(REGISTER_TABLE,
-                new String[]{COLUMN_STUDENTID_REGISTER}, COLUMN_STATUS_REGISTER+"=?",
-                new String[]{"0"}, null, null, null, null);
+                new String[]{COLUMN_STUDENTID_REGISTER}, COLUMN_STUDENTID_REGISTER+"=?"+" AND "+COLUMN_TERMID_REGISTER+"=?"
+                ,new String[]{IDStudent,TERM}, null, null, null, null);
         objCursor.moveToFirst();
         listRegisIDStudent = new String[objCursor.getCount()];
         for (int i = 0; i <objCursor.getCount(); i++) {

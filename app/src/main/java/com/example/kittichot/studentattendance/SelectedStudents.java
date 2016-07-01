@@ -16,7 +16,7 @@ public class SelectedStudents extends ActionBarActivity {
     private TeachdetailTABLE objTeachdetailTABLE;
     private SubjectTABLE objSubjectTABLE;
     private RegisterTABLE objRegisterTABLE;
-    private String[] IDTerm, RoomNO,YearList,namesubject,idSubjectterm;
+    private String[] IDTerm, RoomNO,YearList,namesubject,idSubjectterm,s ;
     private String getIDTERM, getRoom,getYear,strIDteacher,getnamesubject;
     private Spinner objspinnerTERM, objspinnerROOM,objspinnerSubjectTerm;
     private String[] getNameA,getIDA,getSurnameA,getSomething;
@@ -65,6 +65,7 @@ public class SelectedStudents extends ActionBarActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 getIDTERM = spinnerArrayIDTERM.get(position);
                 getnamesubject = arrayListnamesubject.get(position);
+                SetspinRoom();
             }
 
             @Override
@@ -72,11 +73,35 @@ public class SelectedStudents extends ActionBarActivity {
 
             }
         });//objspinnerTerm
+
+    }
+
+    private void SetspinRoom(){
+        int b = 0;
         RoomNO = objStudentTABLE.RoomList();
         final ArrayList<String> arrayListRoom = new ArrayList<String>();
         for (int i = 0; i < RoomNO.length; i++) {
-            arrayListRoom.add(RoomNO[i]);
+            //arrayListRoom.add(RoomNO[i]);
+            String[] s = objStudentTABLE.ListIDStudent(RoomNO[i]);
+            for (int i1 = 0; i1 < s.length; i1++) {
+                String[] strings = objRegisterTABLE.ListRegisIDstudentandID(Integer.parseInt(s[i1]), getIDTERM);
+                if (strings.length >= 1) {
 
+                } else {
+                    for (int i2 = 0; i2 < arrayListRoom.size(); i2++) {
+                        if (arrayListRoom.get(i2) == RoomNO[i]) {
+
+                            b++;
+                        }
+                    }
+                    if (b >= 1) {
+
+                    } else {
+                        arrayListRoom.add(RoomNO[i]);
+                    }
+
+                }
+            }
         }//forRoom
         final ArrayAdapter<String> arrayAdapterRoom = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, arrayListRoom);
         objspinnerROOM.setAdapter(arrayAdapterRoom);
@@ -91,6 +116,7 @@ public class SelectedStudents extends ActionBarActivity {
 
             }
         });
+
     }
 
     private void setAllArray() {
@@ -127,14 +153,21 @@ public class SelectedStudents extends ActionBarActivity {
     public void IntentValueToSelectstudent( View view) {
         ArrayList<String> objStrings = new ArrayList<String>();
         getIDA = objStudentTABLE.ListIDStudent(getRoom);
-        getNameA = objStudentTABLE.ListNameStudent(getRoom);
-        getSurnameA = objStudentTABLE.ListSurNameStudent(getRoom);
-
         for (int i = 0; i < getIDA.length; i++) {
-           // getIDstudent=getIDA[i] + " " + getNameA[i] + " " + getSurnameA[i];
-            objStrings.add(getIDA[i] + " " + getNameA[i] + " " + getSurnameA[i]);
+            s = objRegisterTABLE.ListRegisIDstudentandID(Integer.parseInt(getIDA[i]),getIDTERM);
+            if (s.length >=1) {
+
+            } else {
+                getNameA = objStudentTABLE.ListNameStudent(getIDA[i]);
+                getSurnameA = objStudentTABLE.ListSurNameStudent(getIDA[i]);
+                objStrings.add(getIDA[i] + " " + getNameA[0] + " " + getSurnameA[0]);
+            }
 
         }
+
+
+
+
         final CharSequence[] items = objStrings.toArray(new CharSequence[objStrings.size()]);
 
         AlertDialog dialog;
@@ -144,7 +177,10 @@ public class SelectedStudents extends ActionBarActivity {
         // arraylist to keep the selected items
         final ArrayList seletedItems=new ArrayList();
         //boolean[] booleen={true};
-        final boolean[] b =null;
+        final boolean[] b = new boolean[items.length];
+        for (int i = 0; i < items.length; i++) {
+            b[i] = true;
+        }
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("เลือกรายชื่อนักเรียน");
         builder.setMultiChoiceItems(items,b,
@@ -232,6 +268,6 @@ public class SelectedStudents extends ActionBarActivity {
 
 
 
-    }
+    }//IntentValue
 
 }
