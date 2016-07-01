@@ -18,35 +18,29 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textSize="30dp"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:textColor="#000000" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ชื่อผู้สอน"
+        android:text="ชื่อผู้สอน :"
         android:id="@+id/textView5"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="30dp"
-        android:textSize="25dp" />
-
-    <EditText
-        android:layout_width="@dimen/btnSize"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTxtIDTerm"
-        android:layout_below="@+id/textView5"
-        android:background="#ffffff"
-        android:textSize="30dp"
-        android:layout_marginTop="10dp"
-        android:enabled="false"/>
+        android:textSize="25dp"
+        android:textColor="#000000"
+        android:layout_alignTop="@+id/textView42"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="รหัสวิชา"
         android:id="@+id/textView6"
-        android:layout_below="@+id/editTxtIDTerm"
-        android:layout_marginTop="20dp"
-        android:textSize="25dp" />
+        android:layout_marginTop="10dp"
+        android:textSize="25dp"
+        android:textColor="#000000"
+        android:layout_below="@+id/textView5" />
 
     <Spinner
         android:layout_width="match_parent"
@@ -64,17 +58,8 @@
         android:id="@+id/textView7"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/spinnerinsert"
-        android:textSize="25dp" />
-
-    <EditText
-        android:layout_width="@dimen/btnSize"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTxtYear"
-        android:layout_below="@+id/textView7"
-        android:layout_marginTop="10dp"
-        android:background="#ffffff"
-        android:textSize="30dp"
-        android:inputType="text|numberSigned" />
+        android:textSize="25dp"
+        android:textColor="#000000" />
 
     <Button
         android:layout_width="match_parent"
@@ -82,7 +67,29 @@
         android:text="บันทึก"
         android:onClick="clickAddValueTerm"
         android:id="@+id/button3"
-        android:layout_below="@+id/editTxtYear"
-        android:layout_margin="25dp" />
+        android:layout_margin="25dp"
+        android:layout_below="@+id/spinner2" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner2"
+        android:layout_below="@+id/textView7"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"
+        android:backgroundTintMode="src_over" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/textView42"
+        android:textColor="#000000"
+        android:textSize="25dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/textView5"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_alignParentLeft="false"
+        android:layout_marginTop="10dp" />
 
 </RelativeLayout>

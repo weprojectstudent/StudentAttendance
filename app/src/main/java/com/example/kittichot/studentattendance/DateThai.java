@@ -68,6 +68,63 @@ public class DateThai {
         return String.format("%s-%s-%s", DATE[day-1],Months[month],year+543);
     }
 
+    public String yearThai(int strdate) {
+        this.getdate =String.valueOf(strdate) ;
+        /*String Months[] = {
+
+                "01", "02", "03", "04",
+
+                "05", "06", "07", "08",
+
+                "09", "10", "11", "12"};
+
+                /*"ม.ค", "ก.พ", "มี.ค", "เม.ย",
+
+                "พ.ค", "มิ.ย", "ก.ค", "ส.ค",
+
+                "ก.ย", "ต.ค", "พ.ย", "ธ.ค"};*/
+      /*  String DATE[] = {
+                "01","02","03","04","05",
+                "06","07","08","09","10",
+                "11","12","13","14","15",
+                "16","17","18","19","20",
+                "21","22","23","24","25",
+                "26","27","28","29","30",
+                "31"
+        };*/
+
+        DateFormat df = new SimpleDateFormat("yyyy");
+
+        int year=0,month=0,day=0;
+
+        try {
+
+            java.util.Date date = df.parse(getdate);
+
+            Calendar c = Calendar.getInstance();
+
+            c.setTime(date);
+
+
+
+            year = c.get(Calendar.YEAR);
+            //month = c.get(Calendar.MONTH);
+
+           // day = c.get(Calendar.DATE);
+
+
+
+        } catch (ParseException e) {
+
+// TODO Auto-generated catch block
+
+            e.printStackTrace();
+
+        }
+
+        return String.format("%s",year+543);
+    }
+
     public String dateThaiSelect(String strdate) {
         this.getdate = strdate;
         String Months[] = {

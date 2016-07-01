@@ -7,8 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
@@ -19,16 +19,18 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class insert_term extends ActionBarActivity {
 
     private SubjectTABLE objSubjectTABLE;
     private TeachdetailTABLE objTeachdetailTABLETABLE;
+    private DateThai dateThai;
     private String[] stredtID,strName;
     private String strSpinner,strSpinnerID;
-    private EditText strIDTerm,strTermYear;
+    private TextView strIDTerm;
     private String getstrSpinner,getstrtxtIDTerm,getstrTermYear,getstrUsernameTeacher;
-    private Spinner spinTerm;
+    private Spinner spinTerm,strTermYear;
     private String putExtraName, putExtraUser;
 
 
@@ -38,11 +40,17 @@ public class insert_term extends ActionBarActivity {
         setContentView(R.layout.activity_insert_term);
         objSubjectTABLE = new SubjectTABLE(this);
         objTeachdetailTABLETABLE = new TeachdetailTABLE(this);
+        dateThai = new DateThai();
         //synJsonTOsubjectNEW();
+        BindWidget();
+        createspinner();
 
+    }//onCreate
+
+    private void createspinner() {
         stredtID = objSubjectTABLE.listSubject();
 
-        spinTerm = (Spinner) findViewById(R.id.spinnerinsert);
+
         final ArrayList<String> spinnerArray = new ArrayList<String>();
         final ArrayList<String> spinnerArrayID = new ArrayList<String>();
         for (int i = 0; i < stredtID.length; i++) {
@@ -55,7 +63,7 @@ public class insert_term extends ActionBarActivity {
 
         spinTerm.setAdapter(adapterSpinner);
         //BindWidget
-        BindWidget();
+
         spinTerm.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -69,16 +77,46 @@ public class insert_term extends ActionBarActivity {
 
             }
         });
+        //YEAR
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        ArrayList<String> arrayList = new ArrayList<String>();
+        int stryear = Integer.parseInt(dateThai.yearThai(year+1)) ;
+        for (int i = 1; i < 7; i++) {
+            if (i % 2 == 0) {
+                arrayList.add(stryear + "-2");
+                stryear--;
+            } else {
+                arrayList.add(stryear + "-1");
+            }
 
-    }//onCreate
+        }
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                this,android.R.layout.simple_dropdown_item_1line,arrayList);
+        strTermYear.setAdapter(arrayAdapter);
+        strTermYear.setSelection(2);
+        strTermYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
 
 
     private void BindWidget() {
         String strTextShow = getIntent().getExtras().getString("Name");
         String strTextShowUser = getIntent().getExtras().getString("Username");
-        strIDTerm = (EditText) findViewById(R.id.editTxtIDTerm);
+        strIDTerm = (TextView) findViewById(R.id.textView42);
         strIDTerm.setText(strTextShowUser);
-        strTermYear = (EditText) findViewById(R.id.editTxtYear);
+        strTermYear = (Spinner) findViewById(R.id.spinner2);
+        spinTerm = (Spinner) findViewById(R.id.spinnerinsert);
     }
 
     public void clickAddValueTerm(View view) {
@@ -88,7 +126,7 @@ public class insert_term extends ActionBarActivity {
         putExtraUser = strTextShowUser;
         //getstrtxtIDTerm = strIDTerm.getText().toString().trim();
         getstrSpinner = strSpinnerID;
-        getstrTermYear = strTermYear.getText().toString().trim();
+        //getstrTermYear = strTermYear.getText().toString().trim();
         getstrUsernameTeacher =putExtraUser;
         if ( getstrSpinner.equals("") || getstrUsernameTeacher.equals("") || getstrTermYear.equals("")) {
             MyAlertDialog objMyAlertDialog = new MyAlertDialog();
