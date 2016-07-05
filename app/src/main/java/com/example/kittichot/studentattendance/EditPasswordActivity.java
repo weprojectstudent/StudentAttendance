@@ -39,6 +39,7 @@ public class EditPasswordActivity extends ActionBarActivity implements View.OnCl
     public void  sendEmail(){
 
         isInternetPresent = cd.isConnectingToInternet();
+        strUsername = editText.getText().toString().trim();
         if (strUsername.equals("")){
             MyAlertDialog myAlertDialog = new MyAlertDialog();
             myAlertDialog.errorDiaLog(this,"คุณยังไม่ได้กรอก Username","กรุณากรอก Username ");
