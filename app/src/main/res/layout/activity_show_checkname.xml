@@ -21,13 +21,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="เลือกปีการศึกษา"
-        android:id="@+id/textView39" />
+        android:id="@+id/textView39"
+        android:layout_marginTop="30dp" />
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/listViewShowSubjectShowCheckname"
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnertermShowCheck"
+        android:layout_below="@+id/textView43"
+        android:layout_marginTop="10dp" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerRoomShowCheck"
+        android:layout_below="@+id/textView44"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="เลือกปีการศึกษา"
+        android:id="@+id/textView43"
         android:layout_below="@+id/spinnerTermYearShow"
-        android:layout_marginBottom="80dp"
-        android:background="#87fefefe" />
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="เลือกปีการศึกษา"
+        android:id="@+id/textView44"
+        android:layout_below="@+id/spinnertermShowCheck"
+        android:layout_marginTop="10dp" />
+
 </RelativeLayout>

@@ -15,14 +15,16 @@ import java.util.ArrayList;
 
 public class ShowCheckname extends ActionBarActivity {
 
-    private Spinner objSpinner;
+    private Spinner objSpinner,objSpinnerTERMSHOW,objSpinnerRoomShow;
     private ListView objListView;
     private TeachdetailTABLE objTeachdetailTABLE;
     private RegisterTABLE objRegisterTABLE;
     private ChecknamestudentTABLE objChecknamestudentTABLE;
     private SubjectTABLE objSubjectTABLE;
     private String[] strYEAR,strIDTERM,strNameSubject, strIDSubject,strIDTERMREGIS;
+    private String[] strIDStudent, strroomStudent;
     private String getUsernameTeacher,getYearSelect,getIDTERM,getNAMESUBJECT;
+    private String getIDStudent, getRoom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +42,8 @@ public class ShowCheckname extends ActionBarActivity {
 
     private void bindwidget() {
 
-        objListView = (ListView) findViewById(R.id.listViewShowSubjectShowCheckname);
+        objSpinnerTERMSHOW = (Spinner) findViewById(R.id.spinnertermShowCheck);
+        objSpinnerRoomShow = (Spinner) findViewById(R.id.spinnerRoomShowCheck);
         objSpinner = (Spinner) findViewById(R.id.spinnerTermYearShow);
 
     }
@@ -87,17 +90,31 @@ public class ShowCheckname extends ActionBarActivity {
             }
         }
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,arrayListNAMESubject);
-        objListView.setAdapter(arrayAdapter);
-        objListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,arrayListNAMESubject);
+        objSpinnerTERMSHOW.setAdapter(arrayAdapter);
+        objSpinnerTERMSHOW.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 getIDTERM = arrayListIDTERM.get(position);
                 getNAMESUBJECT= arrayListNAMESubject.get(position);
-                ShowMenu();
+                setspinRoom();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
+
+
+
+
+
+    }
+
+    private void setspinRoom() {
+
+
 
     }
 
