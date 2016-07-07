@@ -53,7 +53,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         ActionBar actionBar = getSupportActionBar();
         //actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setLogo(R.drawable.logoicon);
+        actionBar.setLogo(R.drawable.logo2);
         actionBar.setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_main);
         //Bind Widget
