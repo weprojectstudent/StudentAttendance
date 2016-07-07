@@ -2,7 +2,9 @@ package com.example.kittichot.studentattendance;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -26,6 +28,9 @@ public class UpdateHomework extends ActionBarActivity {
         setContentView(R.layout.activity_update_homework);
         objHomeworkTABLE = new HomeworkTABLE(this);
         objDateThai = new DateThai();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
        //BindWidget
         BindWidget();
         //setCalendar
@@ -33,7 +38,14 @@ public class UpdateHomework extends ActionBarActivity {
 
 
     }
-
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item){
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
     public void ClickupdateValueHomework(View view) {
 
         strTitle = edtTitle.getText().toString();

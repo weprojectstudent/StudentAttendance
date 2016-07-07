@@ -3,8 +3,10 @@ package com.example.kittichot.studentattendance;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
@@ -34,9 +36,19 @@ public class EditSubject extends ActionBarActivity {
         getExtraName = strTextShowName;
         objSubjectTABLE = new SubjectTABLE(this);
         bindwidget();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
 
     }
-
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item){
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void bindwidget() {
         edtID = (EditText) findViewById(R.id.editIDSubject);
         edtName = (EditText) findViewById(R.id.editNameSubject);

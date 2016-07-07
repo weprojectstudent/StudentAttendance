@@ -143,11 +143,11 @@ public class NotificationIntentService extends IntentService {
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setContentTitle("Student Attendance synchronize")
                 .setAutoCancel(true)
-                .setColor(getResources().getColor(R.color.colorAccent))
+                //.setColor(getResources().getColor(R.color.colorAlert))
                 .setTicker("มีการ synchronize ไปยัง server ")
                 .setContentText("ทำการ synchronize data ไปยัง server")
                 .setContentIntent(pendingIntent)
-                .setSmallIcon(R.drawable.notification_icon);
+                .setSmallIcon(R.drawable.logo,10);
         builder.setDeleteIntent(NotificationEventReceiver.getDeleteIntent(this));
 
 
@@ -157,7 +157,7 @@ public class NotificationIntentService extends IntentService {
             public void run() {
                 for (int i =1;i<=getsum;i++) {
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(200);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

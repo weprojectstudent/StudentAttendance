@@ -6,8 +6,10 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -42,6 +44,9 @@ public class CheckNameHomeWorkActivity extends ActionBarActivity {
         objregisterTABLE = new RegisterTABLE(this);
         objHomeworksendingTABLE = new HomeworksendingTABLE(this);
         objTeachdetailTABLE = new TeachdetailTABLE(this);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         final Calendar calendar = Calendar.getInstance();
         year_x = calendar.get(Calendar.YEAR);
         month_x = calendar.get(Calendar.MONTH);
@@ -70,7 +75,14 @@ public class CheckNameHomeWorkActivity extends ActionBarActivity {
             showDialog(CheckNameHomeWorkActivity.this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
         }
     }
-
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item){
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private static AlertDialog showDialog(final Activity act, CharSequence title, CharSequence message, CharSequence buttonYes, CharSequence buttonNo) {
         AlertDialog.Builder downloadDialog = new AlertDialog.Builder(act);
         downloadDialog.setTitle(title);

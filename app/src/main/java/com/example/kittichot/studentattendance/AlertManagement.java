@@ -3,6 +3,7 @@ package com.example.kittichot.studentattendance;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -32,6 +33,8 @@ public class AlertManagement extends ActionBarActivity {
         putusernameTeacher = s;
         textView = (TextView) findViewById(R.id.textView24);
         textView.setText(putusernameTeacher);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
     }
 
@@ -139,7 +142,9 @@ public class AlertManagement extends ActionBarActivity {
                 onBackPressed();
                 return true;
             case R.id.Cancle:
-
+                return true;
+            case android.R.id.home:
+                onBackPressed();
                 return true;
         }
         return super.onOptionsItemSelected(item);

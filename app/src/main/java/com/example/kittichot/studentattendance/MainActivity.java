@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
@@ -49,6 +50,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActionBar actionBar = getSupportActionBar();
+        //actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setLogo(R.drawable.logoicon);
+        actionBar.setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_main);
         //Bind Widget
         bindWidget();
@@ -58,8 +64,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         objTeachdetailTABLE = new TeachdetailTABLE(this);
         objStudentTABLE = new StudentTABLE(this);
         objDateThai = new DateThai();
-        button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(this);
 
         addValue();
         exportDatabaseFile(this,"StudentAttendance");

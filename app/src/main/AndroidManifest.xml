@@ -42,7 +42,8 @@
 
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:icon="@drawable/logo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -52,109 +53,137 @@
         <activity
             android:name=".Menu"
             android:label="เมนู"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:banner="@drawable/logo"/>
         <activity
             android:name=".AddSubjectActivity"
             android:label="จัดการรายการวิขา"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"
+            />
         <activity
             android:name=".QrcodeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".Insert_Subject"
             android:label="เพิ่มรายการการวิชา"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".Term_Manager"
             android:label="จัดการรายการการเทอม"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".insert_term"
             android:label="เพิ่มรายการเทอม"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".Homework_manament"
             android:label="จัดการรายการการบ้าน"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".EditSubject"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".insert_homework"
             android:label="เพิ่มรายการการบ้าน"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".HideSubjectActivity"
             android:label="จัดการรายการวิชาที่ถูกซ่อน"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".HideTermActivity"
             android:label="จัดการรายการเทอมที่ถูกซ่อน"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".UpdateTermActivity"
             android:label="แก้ไขรายการวิชา"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".SelectedStudents"
             android:label="เลือกรายเทอมและห้องของนักเรียน"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".UpdateHomework"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".TestActivity"
-            android:label="@string/title_activity_test"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".MenuActivity"
             android:label="@string/title_activity_menu"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".HideHomeworkActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".SelectListStudent"
             android:label="@string/title_activity_select_list_student"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".AlarmSET"
             android:label="จัดการแจ้งเตือน"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".ShowEvent"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Dialog" />
+            android:theme="@android:style/Theme.Dialog"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".AlertManagement"
             android:label="@string/title_activity_alert_management"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".Insert_Alert"
             android:label="เพิ่มบันทึกใหม่"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".UpdateAlert"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"
+            />
         <activity
             android:name=".HideAlertActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".SelectTermToCheckname"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".SelectHomeWork"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".CheckNameHomeWorkActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".EditPasswordActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
         <activity
             android:name=".ShowCheckname"
-            android:screenOrientation="portrait" />
-        <activity android:name=".SelectDateToListChecknameActivity"></activity>
+            android:screenOrientation="portrait"
+            android:logo="@drawable/logo"/>
+        <activity android:name=".SelectDateToListChecknameActivity"
+            android:logo="@drawable/logo"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

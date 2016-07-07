@@ -294,7 +294,7 @@ public class TeachdetailTABLE {
     }//addValueToSubject
     public void updateValueToTEACHDETAIL(String strupID, String strupName, String strupSubjectID,String strupTermYear,int strupStatus) {
         ContentValues values = new ContentValues();
-        values.put(COLUMN_TERM_ID,strupID);
+        //values.put(COLUMN_TERM_ID,strupID);
         values.put(COLUMN_TEACHER_USERNAME_T, strupName);
         values.put(COLUMN_SUBJECT_ID_T,strupSubjectID);
         values.put(COLUMN_TERM_YEAR,strupTermYear);

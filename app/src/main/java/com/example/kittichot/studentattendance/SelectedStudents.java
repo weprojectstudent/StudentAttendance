@@ -92,12 +92,16 @@ public class SelectedStudents extends ActionBarActivity {
                         if (arrayListRoom.get(i2) == RoomNO[i]) {
 
                             b++;
+                        } else {
+                            b = 0;
                         }
+
                     }
                     if (b >= 1) {
 
                     } else {
                         arrayListRoom.add(RoomNO[i]);
+
                     }
 
                 }

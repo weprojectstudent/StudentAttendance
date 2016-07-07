@@ -4,7 +4,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -35,6 +37,8 @@ public class EditPasswordActivity extends ActionBarActivity implements View.OnCl
         edtPass = (EditText) findViewById(R.id.edttxtPassNew);
         strUsername = editText.getText().toString().trim();
         cd = new ConnectionDetector(getApplicationContext());
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
     public void  sendEmail(){
 
@@ -141,6 +145,16 @@ public class EditPasswordActivity extends ActionBarActivity implements View.OnCl
         dialog.show();
 
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item){
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            Intent intent = new Intent(EditPasswordActivity.this,MainActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

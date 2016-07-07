@@ -2,8 +2,10 @@ package com.example.kittichot.studentattendance;
 
 import android.os.Build;
 import android.os.StrictMode;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -44,9 +46,18 @@ public class insert_term extends ActionBarActivity {
         //synJsonTOsubjectNEW();
         BindWidget();
         createspinner();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
     }//onCreate
-
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item){
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void createspinner() {
         stredtID = objSubjectTABLE.listSubject();
 

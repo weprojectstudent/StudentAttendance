@@ -2,7 +2,9 @@ package com.example.kittichot.studentattendance;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -24,8 +26,18 @@ public class HideAlertActivity extends ActionBarActivity {
         putusernameTeacher = s;
         BindWidget();
         SetAllArray();
-    }
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
+    }
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item){
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void BindWidget() {
 
         objListView = (ListView) findViewById(R.id.listViewALERTHide);

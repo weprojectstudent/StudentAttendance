@@ -1,7 +1,9 @@
 package com.example.kittichot.studentattendance;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,6 +26,8 @@ public class UpdateTermActivity extends ActionBarActivity {
         setContentView(R.layout.activity_update_term);
         objSubjectTABLE = new SubjectTABLE(this);
         objTeachdetailTABLE = new TeachdetailTABLE(this);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         //BindWidget
         BindWidget();
         //getIntent
@@ -33,6 +37,16 @@ public class UpdateTermActivity extends ActionBarActivity {
         //updateValue
         
     }
+
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item){
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     public void updateValue(View view) {
         getstrtxtIDTerm = strIDTerm.getText().toString().trim();

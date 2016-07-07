@@ -7,7 +7,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -46,6 +48,9 @@ public class QrcodeActivity extends ActionBarActivity {
         objChecknamestudentTABLE = new ChecknamestudentTABLE(this);
         objTeachdetailTABLE = new TeachdetailTABLE(this);
         objSubjectTABLE = new SubjectTABLE(this);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         final Calendar calendar = Calendar.getInstance();
         year_x = calendar.get(Calendar.YEAR);
         month_x = calendar.get(Calendar.MONTH)+1;
@@ -64,7 +69,14 @@ public class QrcodeActivity extends ActionBarActivity {
             }
         textView.setText(getname);
     }
-
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item){
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
     public void scanBar(View v) {
         try {
             Intent intent = new Intent(ACTION_SCAN);

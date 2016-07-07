@@ -1,6 +1,7 @@
 package com.example.kittichot.studentattendance;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.MenuInflater;
@@ -30,6 +31,8 @@ public class SelectTermToCheckname extends ActionBarActivity {
         objTeachdetailTABLE = new TeachdetailTABLE(this);
         objSubjectTABLE = new SubjectTABLE(this);
         StrSpinnerYear = (Spinner) findViewById(R.id.spinner);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         setAllArray();
     }
@@ -132,7 +135,9 @@ public class SelectTermToCheckname extends ActionBarActivity {
                 onBackPressed();
                 return true;
             case R.id.Cancle:
-
+                return true;
+            case android.R.id.home:
+                onBackPressed();
                 return true;
         }
         return super.onOptionsItemSelected(item);

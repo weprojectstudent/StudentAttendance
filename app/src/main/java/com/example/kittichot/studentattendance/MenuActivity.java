@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -43,6 +44,7 @@ public class MenuActivity extends ActionBarActivity
     private String[] strIDAlert,strTitleAlert,strDetailAlert,strDATEsaveAlert,strDateAlert, strStatusAlert;
     private AlertTABLE objAlertTABLE;
     private DateThai objDateThai;
+    private TextView objTextView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +52,9 @@ public class MenuActivity extends ActionBarActivity
         objHomeworkTABLE = new HomeworkTABLE(this);
         objAlertTABLE = new AlertTABLE(this);
         objDateThai = new DateThai();
+        objTextView = (TextView) findViewById(R.id.textView45);
+        String strTextShowUser = getIntent().getExtras().getString("Username");
+        objTextView.setText(strTextShowUser);
 
         createListSpinner();
         //createListView();

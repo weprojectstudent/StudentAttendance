@@ -6,8 +6,10 @@ import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -46,9 +48,19 @@ public class insert_homework extends ActionBarActivity{
         edtgetdate = (EditText) findViewById(R.id.edtsetdate);
         objHomeworkTABLE = new HomeworkTABLE(this);
         objDateThai = new DateThai();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         Bindwidget();
     }
-
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item){
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void Bindwidget() {
         edtTitle = (EditText) findViewById(R.id.editText3);
         edtDetail = (EditText) findViewById(R.id.editText4);

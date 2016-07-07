@@ -2,7 +2,9 @@ package com.example.kittichot.studentattendance;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,6 +30,9 @@ public class SelectHomeWork extends ActionBarActivity {
         objHomeworkTABLE = new HomeworkTABLE(this);
         objTeachdetailTABLE = new TeachdetailTABLE(this);
         objSubjectTABLE = new SubjectTABLE(this);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         objSpinner = (Spinner) findViewById(R.id.spinnerHWIDtocheck);
         objSpinnerIDTERM = (Spinner) findViewById(R.id.spinnerIDTermHWtocheck);
         objSpinnerYear = (Spinner) findViewById(R.id.spinnerselectyearhome);
@@ -35,7 +40,14 @@ public class SelectHomeWork extends ActionBarActivity {
         createListView();
         createSpinnerYear();
     }
-
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item){
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void createSpinnerYear() {
        // final ArrayList<String> arrayListYear = new ArrayList<String>();
         strIDteacher = getIntent().getExtras().getString("Username");

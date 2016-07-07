@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.StrictMode;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.MenuInflater;
@@ -45,7 +46,8 @@ public class AddSubjectActivity extends ActionBarActivity {
         strListID = objSubjectTABLE.listSubject();
         strListName = objSubjectTABLE.listSName();
         objMyAdapter=new MyAdapter(this,strListID,strListName);
-
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         //bind widget
         bindWidget();
         objList.setAdapter(objMyAdapter);
@@ -108,6 +110,9 @@ public class AddSubjectActivity extends ActionBarActivity {
         String strTextShow = getIntent().getExtras().getString("Name");
         txtShowTescher.setText(strTextShow);
     }
+
+
+
 
     public void clickAdd(View view) {
         String strTextShow = getIntent().getExtras().getString("Name");
@@ -243,11 +248,15 @@ public class AddSubjectActivity extends ActionBarActivity {
                 onBackPressed();
                 return true;
             case R.id.Cancle:
-
+                return true;
+            case android.R.id.home:
+                onBackPressed();
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
 
 }//mainCLas

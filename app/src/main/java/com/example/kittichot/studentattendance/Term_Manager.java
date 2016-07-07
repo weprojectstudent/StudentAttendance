@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.StrictMode;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.MenuInflater;
@@ -41,6 +42,10 @@ public class Term_Manager extends ActionBarActivity {
         setContentView(R.layout.activity_term__manager);
         objTeachdetailTABLE = new TeachdetailTABLE(this);
         objSubjectTABLE = new SubjectTABLE(this);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayUseLogoEnabled(true);
+
         //sysJsonToTerm
         //synJsonToTerm();
         //testAddValue
@@ -83,7 +88,7 @@ public class Term_Manager extends ActionBarActivity {
 
     public void clickinsertTerm(View view) {
 
-        String strTextShow = getIntent().getExtras().getString("Name");
+       String strTextShow = getIntent().getExtras().getString("Name");
         String strTextShowUser = getIntent().getExtras().getString("Username");
         putExtraName = strTextShow;
         putExtraUser = strTextShowUser;
@@ -91,6 +96,11 @@ public class Term_Manager extends ActionBarActivity {
         intent.putExtra("Name", putExtraName);
         intent.putExtra("Username", putExtraUser);
         startActivity(intent);
+       /* MyAlertDialog myAlertDialog = new MyAlertDialog();
+        for (int i = 0; i < strtermyearmenage.length; i++) {
+            myAlertDialog.errorDiaLog(this, strtermyearmenage[i], strtermyearmenage[i]);
+        }*/
+
     }
 
 
@@ -113,7 +123,7 @@ public class Term_Manager extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 strgetID = strTermID[position];
-                strgetSubject = strsubjectID[position]+" "+getNameSubject[position];
+                strgetSubject = strsubjectID[position];
                 strgetTerm = strTermYear[position];
                 strStatus = "1";
                 ShowMenu();
@@ -190,7 +200,7 @@ public class Term_Manager extends ActionBarActivity {
     }   //updateValuetoSQL
 
     private void setAllArray() {
-        strIDteacher = getIntent().getExtras().getString("Username");
+        //strIDteacher = getIntent().getExtras().getString("Username");
 
     }
     private void setShowteacherUser() {
@@ -226,7 +236,9 @@ public class Term_Manager extends ActionBarActivity {
                 onBackPressed();
                 return true;
             case R.id.Cancle:
-
+                return true;
+            case android.R.id.home:
+                onBackPressed();
                 return true;
         }
         return super.onOptionsItemSelected(item);

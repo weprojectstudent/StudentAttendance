@@ -4,8 +4,10 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.StrictMode;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -22,7 +24,8 @@ import java.util.ArrayList;
 
 public class HideTermActivity extends ActionBarActivity {
     private TeachdetailTABLE objTeachdetailTABLE;
-    private String[] strTermID, strsubjectID,strTermYear;
+    private SubjectTABLE objSubjectTABLE;
+    private String[] strTermID, strsubjectID,strTermYear,NameSuject;
     private String putExtraName, putExtraUser;
     private TextView textTeacher;
     private ListView objListView;
@@ -32,6 +35,9 @@ public class HideTermActivity extends ActionBarActivity {
         super.onResume();
         setContentView(R.layout.activity_hide_term);
         objTeachdetailTABLE = new TeachdetailTABLE(this);
+        objSubjectTABLE = new SubjectTABLE(this);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         //setAllArray
         setAllArray();
         //bindWidget
@@ -39,6 +45,16 @@ public class HideTermActivity extends ActionBarActivity {
         //CreateListView
         CreateListView();
     }
+
+        @Override
+        public boolean onOptionsItemSelected (MenuItem item){
+            int id = item.getItemId();
+            if (id == android.R.id.home) {
+                onBackPressed();
+            }
+            return super.onOptionsItemSelected(item);
+        }
+
     private void setAllArray() {
         String strTextShowUser = getIntent().getExtras().getString("IDTeacher");
         String strYear = getIntent().getExtras().getString("Year");
@@ -55,7 +71,14 @@ public class HideTermActivity extends ActionBarActivity {
 
     }
     private void CreateListView() {
-        MyAdapterTerm myAdapterTerm = new MyAdapterTerm(HideTermActivity.this, strTermID, strsubjectID,strTermYear);
+        final String[] getNameSubject = new String[strsubjectID.length];
+        for (int i = 0; i < strsubjectID.length; i++) {
+            NameSuject = objSubjectTABLE.listName(strsubjectID[i]);
+            for (int i1 = 0; i1 < NameSuject.length; i1++) {
+                getNameSubject[i] = NameSuject[i1];
+            }
+        }
+        MyAdapterTerm myAdapterTerm = new MyAdapterTerm(HideTermActivity.this, strTermID, getNameSubject,strTermYear);
         objListView.setAdapter(myAdapterTerm);
 
         objListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

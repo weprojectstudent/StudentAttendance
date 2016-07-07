@@ -2,8 +2,10 @@ package com.example.kittichot.studentattendance;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -35,8 +37,18 @@ public class Insert_Alert extends ActionBarActivity {
         edtgetdate = (EditText) findViewById(R.id.edtsetdatealert);
         //objHomeworkTABLE = new HomeworkTABLE(this);
         Bindwidget();
-    }
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
+    }
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item){
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void Bindwidget() {
         edtTitle = (EditText) findViewById(R.id.edtTitleAlert);
         edtDetail = (EditText) findViewById(R.id.edtDetailAlert);

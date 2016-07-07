@@ -4,8 +4,10 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.StrictMode;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -33,6 +35,8 @@ public class HideSubjectActivity extends ActionBarActivity {
         super.onResume();
         setContentView(R.layout.activity_hide_subject);
         objSubjectTABLE = new SubjectTABLE(this);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         //BindWidget
         BindWidget();
@@ -41,7 +45,14 @@ public class HideSubjectActivity extends ActionBarActivity {
         //setListView
         setListView();
     }
-
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item){
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void BindWidget() {
         txtShowTescher = (TextView) findViewById(R.id.textViewTeacherHide);
         objHideList = (ListView) findViewById(R.id.listViewHideSubject);

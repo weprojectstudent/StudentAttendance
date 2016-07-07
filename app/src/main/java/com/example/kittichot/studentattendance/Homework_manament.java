@@ -3,6 +3,7 @@ package com.example.kittichot.studentattendance;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -28,6 +29,8 @@ public class Homework_manament extends ActionBarActivity {
         setupAllArray();
         createListView();
         createItem();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
 
     }
@@ -130,7 +133,9 @@ public class Homework_manament extends ActionBarActivity {
                 onBackPressed();
                 return true;
             case R.id.Cancle:
-
+                return true;
+            case android.R.id.home:
+                onBackPressed();
                 return true;
         }
         return super.onOptionsItemSelected(item);

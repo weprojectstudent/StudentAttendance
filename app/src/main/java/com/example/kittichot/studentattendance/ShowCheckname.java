@@ -4,7 +4,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -37,6 +39,8 @@ public class ShowCheckname extends ActionBarActivity {
         objSubjectTABLE = new SubjectTABLE(this);
         objStudentTABLE = new StudentTABLE(this);
         objMyAlertDialog = new MyAlertDialog();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         getUsernameTeacher = getIntent().getExtras().getString("Username");
 
@@ -44,7 +48,14 @@ public class ShowCheckname extends ActionBarActivity {
         createSpinner();
 
     }
-
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item){
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void bindwidget() {
 
         objSpinnerTERMSHOW = (Spinner) findViewById(R.id.spinnertermShowCheck);
@@ -118,25 +129,57 @@ public class ShowCheckname extends ActionBarActivity {
     }
 
     private void setspinRoom() {
-        ArrayList<String> arrayList = new ArrayList<String>();
+        int b = 0;
+       final ArrayList<String> arrayListRoom = new ArrayList<String>();
         strIDStudent = objRegisterTABLE.ListRegisIDstudent(getIDTERM);
         for (int i = 0; i < strIDStudent.length; i++) {
-            strroomStudent = objStudentTABLE.ListClassRoomStudent(strIDStudent[i]);
-            for (int i1 = 0; i1 < strroomStudent.length; i1++) {
-            arrayList.add(strroomStudent[i1]);
+            String[] strings = objStudentTABLE.ListClassRoomStudent(strIDStudent[i]);
+            for (int i1 = 0; i1 < strings.length; i1++) {
+                for (int i2 = 0; i2 < arrayListRoom.size(); i2++) {
+                    if (String.valueOf(arrayListRoom.get(i2)).equals(strings[i1])) {
+                        b++;
+                    } else {
+                        b = 0;
+                    }
+
+                }
+                if (b >= 1) {
+
+
+                } else {
+                    arrayListRoom.add(strings[i1]);
+                }
             }
 
+
+
+
         }
+
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_dropdown_item_1line, arrayList);
+                this, android.R.layout.simple_dropdown_item_1line, arrayListRoom);
         objSpinnerRoomShow.setAdapter(arrayAdapter);
+        objSpinnerRoomShow.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                getRoom = arrayListRoom.get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
 
     public void ClickshowCheck(View view) {
-        objMyAlertDialog.errorDiaLog(this,getIDTERM,getIDTERM);
+        Intent intent = new Intent(getApplicationContext(),AddSubjectActivity.class);
+
 
     }
+
+
 
     private void ShowMenu() {
         CharSequence[] CharItem = {"ดูรายเช็คชื่อของวิชา"+getNAMESUBJECT,"ยกเลิก"};

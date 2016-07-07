@@ -42,6 +42,6 @@ public class MyOpenHelper extends SQLiteOpenHelper{
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-       // onCreate(db);
+
     }
 }//mainclass

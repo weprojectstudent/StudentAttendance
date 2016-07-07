@@ -3,7 +3,9 @@ package com.example.kittichot.studentattendance;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -35,12 +37,22 @@ public class SelectListStudent extends ActionBarActivity {
         objRegisterTABLE = new RegisterTABLE(this);
         objSubjectTABLE = new SubjectTABLE(this);
         objTeachdetailTABLE = new TeachdetailTABLE(this);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         BindWidGet();
         setAllArray();
 
 
     }
-
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item){
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void createListView() {
         String strIDteacher = getIntent().getExtras().getString("Username");
         ArrayList<String> arrayList = new ArrayList<String>();
