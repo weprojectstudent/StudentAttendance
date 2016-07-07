@@ -242,6 +242,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     private void bindWidget() {
         editUser = (EditText) findViewById(R.id.editText);
         editPassword = (EditText) findViewById(R.id.editText2);
+        button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(this);
     }//Bind Widget
 
     private void sysnjsonToSQLite() {

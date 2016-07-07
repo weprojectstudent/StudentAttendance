@@ -48,6 +48,10 @@ public class MenuActivity extends ActionBarActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setLogo(R.drawable.logo2);
+        actionBar.setDisplayUseLogoEnabled(true);
         setContentView(R.layout.activity_menu2);
         objHomeworkTABLE = new HomeworkTABLE(this);
         objAlertTABLE = new AlertTABLE(this);

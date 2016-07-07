@@ -143,8 +143,8 @@ public class NotificationIntentService extends IntentService {
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setContentTitle("Student Attendance synchronize")
                 .setAutoCancel(true)
-                //.setColor(getResources().getColor(R.color.colorAlert))
-                .setTicker("มีการ synchronize ไปยัง server ")
+                .setColor(getResources().getColor(R.color.colorAlert))
+                    .setTicker("มีการ synchronize ไปยัง server ")
                 .setContentText("ทำการ synchronize data ไปยัง server")
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(R.drawable.logo,10);

@@ -20,7 +20,8 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
-        android:label="@string/app_name"
+        android:label="  StudentAttendance"
+
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <service
@@ -52,12 +53,12 @@
         </activity>
         <activity
             android:name=".Menu"
-            android:label="เมนู"
+            android:label=" เมนู"
             android:screenOrientation="portrait"
             android:banner="@drawable/logo"/>
         <activity
             android:name=".AddSubjectActivity"
-            android:label="จัดการรายการวิขา"
+            android:label="  จัดการรายการวิขา"
             android:screenOrientation="portrait"
             android:logo="@drawable/logo"
             />

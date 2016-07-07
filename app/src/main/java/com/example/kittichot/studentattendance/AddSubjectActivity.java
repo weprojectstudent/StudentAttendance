@@ -48,6 +48,9 @@ public class AddSubjectActivity extends ActionBarActivity {
         objMyAdapter=new MyAdapter(this,strListID,strListName);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setLogo(R.drawable.logo2);
+        actionBar.setDisplayUseLogoEnabled(true);
         //bind widget
         bindWidget();
         objList.setAdapter(objMyAdapter);
