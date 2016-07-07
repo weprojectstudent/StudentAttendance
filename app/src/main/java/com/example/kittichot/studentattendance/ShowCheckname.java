@@ -18,6 +18,7 @@ public class ShowCheckname extends ActionBarActivity {
     private Spinner objSpinner,objSpinnerTERMSHOW,objSpinnerRoomShow;
     private ListView objListView;
     private TeachdetailTABLE objTeachdetailTABLE;
+    private StudentTABLE objStudentTABLE;
     private RegisterTABLE objRegisterTABLE;
     private ChecknamestudentTABLE objChecknamestudentTABLE;
     private SubjectTABLE objSubjectTABLE;
@@ -25,6 +26,7 @@ public class ShowCheckname extends ActionBarActivity {
     private String[] strIDStudent, strroomStudent;
     private String getUsernameTeacher,getYearSelect,getIDTERM,getNAMESUBJECT;
     private String getIDStudent, getRoom;
+    private MyAlertDialog objMyAlertDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +35,9 @@ public class ShowCheckname extends ActionBarActivity {
         objRegisterTABLE = new RegisterTABLE(this);
         objTeachdetailTABLE = new TeachdetailTABLE(this);
         objSubjectTABLE = new SubjectTABLE(this);
+        objStudentTABLE = new StudentTABLE(this);
+        objMyAlertDialog = new MyAlertDialog();
+
         getUsernameTeacher = getIntent().getExtras().getString("Username");
 
         bindwidget();
@@ -113,8 +118,23 @@ public class ShowCheckname extends ActionBarActivity {
     }
 
     private void setspinRoom() {
+        ArrayList<String> arrayList = new ArrayList<String>();
+        strIDStudent = objRegisterTABLE.ListRegisIDstudent(getIDTERM);
+        for (int i = 0; i < strIDStudent.length; i++) {
+            strroomStudent = objStudentTABLE.ListClassRoomStudent(strIDStudent[i]);
+            for (int i1 = 0; i1 < strroomStudent.length; i1++) {
+            arrayList.add(strroomStudent[i1]);
+            }
 
+        }
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_dropdown_item_1line, arrayList);
+        objSpinnerRoomShow.setAdapter(arrayAdapter);
 
+    }
+
+    public void ClickshowCheck(View view) {
+        objMyAlertDialog.errorDiaLog(this,getIDTERM,getIDTERM);
 
     }
 

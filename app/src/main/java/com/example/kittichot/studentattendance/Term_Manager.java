@@ -58,7 +58,7 @@ public class Term_Manager extends ActionBarActivity {
     }
 
     private void CreateSpinner() {
-        strtermyearmenage = objTeachdetailTABLE.listTERMYearselect(strIDteacher);
+        strtermyearmenage = objTeachdetailTABLE.listTERMYearselected(strIDteacher);
         final ArrayList<String> arrayList = new ArrayList<String>();
         for (int i=0;i<strtermyearmenage.length;i++) {
             arrayList.add(strtermyearmenage[i]);

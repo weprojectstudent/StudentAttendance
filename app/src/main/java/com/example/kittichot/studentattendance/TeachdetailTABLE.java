@@ -245,6 +245,21 @@ public class TeachdetailTABLE {
         objCursor.close();
         return strlisttermyear;
     }//listTerm
+
+    public String[] listTERMYearselected(String user) {
+        String strlisttermyear[] = null;
+        Cursor objCursor = readSQLite.query(true,TEACHDETAILTABLE_TABLE,
+                new String[]{COLUMN_TERM_YEAR},COLUMN_TEACHER_USERNAME_T+"=?" ,new String[]{user}, null, null, null, null);
+        objCursor.moveToFirst();
+        strlisttermyear = new String[objCursor.getCount()];
+        for (int i = 0; i < objCursor.getCount(); i++) {
+            strlisttermyear[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_TERM_YEAR));
+            objCursor.moveToNext();
+        }//for
+        objCursor.close();
+        return strlisttermyear;
+    }//listTerm
+
     public String[] listIDSubjectforregis(String id) {
         String strlisttermyear[] = null;
         Cursor objCursor = readSQLite.query(TEACHDETAILTABLE_TABLE,

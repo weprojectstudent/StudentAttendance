@@ -176,10 +176,26 @@ public class StudentTABLE {
 
         return listroom;
     }//RoomListIDREGIS
+
     public String[] ListClassRoomStudentIDREGIS(String s) {
 
         String listroom[] = null;
         Cursor cursor = readSQLite.query(STUDENT_TABLE, new String[]{COLUMN_CLASSROOM_STUDENT},
+                COLUMN_ID_STUDENT + "=?",new String[]{s}, null, null, null, null);
+        cursor.moveToFirst();
+        listroom = new String[cursor.getCount()];
+        for (int i = 0; i < cursor.getCount(); i++) {
+            listroom[i] = cursor.getString(cursor.getColumnIndex(COLUMN_CLASSROOM_STUDENT));
+            cursor.moveToNext();
+        }//for
+        cursor.close();
+
+        return listroom;
+    }//RoomListIDREGIS
+    public String[] ListClassRoomStudent(String s) {
+
+        String listroom[] = null;
+        Cursor cursor = readSQLite.query(true,STUDENT_TABLE, new String[]{COLUMN_CLASSROOM_STUDENT},
                 COLUMN_ID_STUDENT + "=?",new String[]{s}, null, null, null, null);
         cursor.moveToFirst();
         listroom = new String[cursor.getCount()];
