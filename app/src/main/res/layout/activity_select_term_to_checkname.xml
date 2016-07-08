@@ -16,39 +16,61 @@
         android:text="เลือกรายการเทอมที่ต้องการเช็คชื่อ"
         android:textSize="20dp"
         android:id="@+id/textView28"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/spinner" />
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/spinner"
+        style="@style/textColor" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinnerTermtocheck"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/textView28" />
+        android:layout_below="@+id/textView28"
+        style="@style/textColor" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="เลือกเทอมเสร็จสิ้น"
         android:id="@+id/button12"
-        android:layout_below="@+id/spinnerTermtocheck"
         android:onClick="clicktocheckname"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp" />
+        android:layout_marginBottom="58dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="เลือกรายการเทอมที่ต้องการเช็คชื่อ"
+        android:text="เลือกปีการศึกษาที่ต้องการเช็คชื่อ"
         android:textSize="20dp"
         android:id="@+id/textView37"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="50dp"
+        style="@style/textColor" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/textView37" />
+        android:layout_below="@+id/textView37"
+        style="@style/textColor" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="เลือกห้องเรียนที่ต้องการ"
+        android:id="@+id/textView46"
+        android:layout_below="@+id/spinnerTermtocheck"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        style="@style/textColor" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerRoom"
+        android:layout_below="@+id/textView46"
+        android:layout_marginTop="10dp"
+        style="@style/textColor" />
 
 </RelativeLayout>

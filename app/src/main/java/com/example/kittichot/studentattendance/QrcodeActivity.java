@@ -38,6 +38,7 @@ public class QrcodeActivity extends ActionBarActivity {
     private TextView textView;
     private TeachdetailTABLE objTeachdetailTABLE;
     private SubjectTABLE objSubjectTABLE;
+    private DateThai objDateThai;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ public class QrcodeActivity extends ActionBarActivity {
         objSubjectTABLE = new SubjectTABLE(this);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-
+        objDateThai = new DateThai();
         final Calendar calendar = Calendar.getInstance();
         year_x = calendar.get(Calendar.YEAR);
         month_x = calendar.get(Calendar.MONTH)+1;
@@ -181,40 +182,61 @@ public class QrcodeActivity extends ActionBarActivity {
     }//showmenu
 
         public void clickcheck(View view){
-            getdate = year_x + "-0" + month_x + "-" + day_x;
-            IDREGISALL = objregisterTABLE.ListRegisIDforterm(getIntent);
-            for (int i = 0; i < IDREGISALL.length; i++) {
-                objChecknamestudentTABLE.addValueCheckname(Integer.parseInt(IDREGISALL[i]), getdate, 1);
-            }
-          for (int s = 0;s<stringShowID.size();s++){
-                String s1 = stringShowID.get(s);
-               //objChecknamestudentTABLE.addValueCheckname(Integer.parseInt(s1), getdate, 0);
-              objChecknamestudentTABLE.updateValueCheckname(Integer.parseInt(s1),getdate,0);
-           }
-            ArrayList<String> string = new ArrayList<String>();
-                for (int i=0;i<stringShow.size();i++){
+            String room = getIntent().getExtras().getString("ROOM");
+            getdate = year_x + "-" + month_x + "-" + day_x;
+            String[] strings = objStudentTABLE.ListIDStudent(room);
+            int num = strings.length;
+            int numrow =0;
+            for (int i = 0; i < strings.length; i++) {
+                IDREGISALL = objregisterTABLE.ListRegisIDforterm(getIntent,strings[i]);
+            for (int i1 = 0; i1 < IDREGISALL.length; i1++) {
+               String[] s = objChecknamestudentTABLE.ChecknameIDC(IDREGISALL[i1], objDateThai.dateThai(getdate));
+                if (s.length < 1) {
+                    objChecknamestudentTABLE.addValueCheckname(Integer.parseInt(IDREGISALL[i1]), objDateThai.dateThai(getdate), 1);
+                } else {
 
-                    string.add(stringShow.get(i)+"\n");
                 }
-            //final CharSequence[] items = strings.toArray(new CharSequence[strings.size()]);
-            int s = string.toString().length()-1;
-            int s5 = stringShowID.toString().length()-1;
-            AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(QrcodeActivity.this);
-            myAlertDialog.setTitle("ทำการเช็คชื่อรักเรียน ");
-            myAlertDialog.setIcon(R.drawable.user);
-            //myAlertDialog.setMessage(string.toString().substring(1,s));
-            myAlertDialog.setMessage(stringShowID.toString().substring(1,s5));
-            myAlertDialog.setCancelable(false);
-            myAlertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
-            myAlertDialog.show();
+                numrow++;
+            }
+            }
+            if (numrow == num) {
+                onupdate();
+            }
+
 
 
         }
+
+    private void onupdate() {
+        for (int s = 0;s<stringShowID.size();s++){
+            String s1 = stringShowID.get(s);
+            //objChecknamestudentTABLE.addValueCheckname(Integer.parseInt(s1), getdate, 0);
+
+            objChecknamestudentTABLE.updateValueCheckname(Integer.parseInt(s1),objDateThai.dateThai(getdate),0);
+        }
+        ArrayList<String> string = new ArrayList<String>();
+        for (int i=0;i<stringShow.size();i++){
+
+            string.add(stringShow.get(i)+"\n");
+        }
+        //final CharSequence[] items = strings.toArray(new CharSequence[strings.size()]);
+        int s = string.toString().length()-1;
+        int s5 = stringShowID.toString().length()-1;
+        AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(QrcodeActivity.this);
+        myAlertDialog.setTitle("ทำการเช็คชื่อรักเรียน");
+        myAlertDialog.setIcon(R.drawable.user);
+        //myAlertDialog.setMessage(string.toString().substring(1,s));
+        myAlertDialog.setMessage(string.toString().substring(1,s));
+        myAlertDialog.setCancelable(false);
+        myAlertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        myAlertDialog.show();
+    }
+
     public void onBackPressed(){
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setTitle("Exit");

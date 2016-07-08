@@ -133,16 +133,16 @@ public class ChecknamestudentTABLE {
 
     }//addValueCheckname
 
-    public void updateValueCheckname(int register_id,String checkname_date,int checkname_status){
+    public long updateValueCheckname(int register_id,String checkname_date,int checkname_status){
         ContentValues values = new ContentValues();
         //values.put(COLUMN_ID_CHECKNAME,checkname_id);
-        values.put(COLUMN_ID_REGISTER,register_id);
-        values.put(COLUMN_DATE_CHECKNAME,checkname_date);
+        //values.put(COLUMN_ID_REGISTER,register_id);
+        //values.put(COLUMN_DATE_CHECKNAME,checkname_date);
         values.put(COLUMN_STATUS_CHECKNAME,checkname_status);
-        writerSQLite.update(CHECKNAMESTUDENT_TABLE, values,
+       return writerSQLite.update(CHECKNAMESTUDENT_TABLE, values,
                 COLUMN_ID_REGISTER + "=?"+" AND "+COLUMN_DATE_CHECKNAME+"=?",
                 new String[]{String.valueOf(register_id),checkname_date});
-        writerSQLite.close();
+        //writerSQLite.close();
     }
 
 }//main

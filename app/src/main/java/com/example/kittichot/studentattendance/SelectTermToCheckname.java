@@ -14,9 +14,10 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 
 public class SelectTermToCheckname extends ActionBarActivity {
-    private Spinner objSpinner,StrSpinnerYear;
+    private Spinner objSpinner,StrSpinnerYear,objspinnerRoom;
     private RegisterTABLE objRegisterTABLE;
-    private String[] getIDStudentR,getNameSubject,getIDSubject;
+    private StudentTABLE objStudentTABLE;
+    private String[] strIDStudent,getRoomSubject,getIDSubject;
     private String strSpinner,strSpinnerIDTerm;
     private TeachdetailTABLE objTeachdetailTABLE;
     private SubjectTABLE objSubjectTABLE;
@@ -30,7 +31,9 @@ public class SelectTermToCheckname extends ActionBarActivity {
         objRegisterTABLE = new RegisterTABLE(this);
         objTeachdetailTABLE = new TeachdetailTABLE(this);
         objSubjectTABLE = new SubjectTABLE(this);
+        objStudentTABLE = new StudentTABLE(this);
         StrSpinnerYear = (Spinner) findViewById(R.id.spinner);
+        objspinnerRoom = (Spinner) findViewById(R.id.spinnerRoom);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
@@ -102,6 +105,7 @@ public class SelectTermToCheckname extends ActionBarActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
               strSpinner= arrayList.get(position);
                 strSpinnerIDTerm = spinnerArraynameSubect.get(position);
+                spinnerRoom();
             }
 
             @Override
@@ -110,9 +114,57 @@ public class SelectTermToCheckname extends ActionBarActivity {
             }
         });
     }
+
+    private void spinnerRoom() {
+        int b = 0;
+        final ArrayList<String> arrayListRoom = new ArrayList<String>();
+        strIDStudent = objRegisterTABLE.ListRegisIDstudent(strSpinner);
+        for (int i = 0; i < strIDStudent.length; i++) {
+            String[] strings = objStudentTABLE.ListClassRoomStudent(strIDStudent[i]);
+            for (int i1 = 0; i1 < strings.length; i1++) {
+                for (int i2 = 0; i2 < arrayListRoom.size(); i2++) {
+                    if (String.valueOf(arrayListRoom.get(i2)).equals(strings[i1])) {
+                        b++;
+                    } else {
+                        b = 0;
+                    }
+
+                }
+                if (b >= 1) {
+
+
+                } else {
+                    arrayListRoom.add(strings[i1]);
+                }
+            }
+
+
+
+
+        }
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_dropdown_item_1line, arrayListRoom);
+        objspinnerRoom.setAdapter(arrayAdapter);
+        objspinnerRoom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                getRoom = arrayListRoom.get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+    }
+
     public void clicktocheckname(View view) {
         Intent intent = new Intent(SelectTermToCheckname.this,QrcodeActivity.class);
         intent.putExtra("IDTERM", strSpinner);
+        intent.putExtra("ROOM", getRoom);
         startActivity(intent);
     }
 
