@@ -174,7 +174,12 @@ public class ShowCheckname extends ActionBarActivity {
     }
 
     public void ClickshowCheck(View view) {
-        Intent intent = new Intent(getApplicationContext(),AddSubjectActivity.class);
+        Intent intent = new Intent(ShowCheckname.this,ShowCheckNameListDate.class);
+        intent.putExtra("ROOM", getRoom);
+        intent.putExtra("TERM", getIDTERM);
+        intent.putExtra("SUBJECT", getNAMESUBJECT);
+        intent.putExtra("USERNAME", getUsernameTeacher);
+        startActivity(intent);
 
 
     }

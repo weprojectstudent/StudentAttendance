@@ -208,14 +208,14 @@ public class RegisterTABLE {
         objCursor.close();
         return listRegisStatus;
     }//LISTREGISTERID
-    public String[] ListRegisIDTERM() {
+    public String[] ListIDStudentforIDregis(String IDregis) {
         String listRegisStatus[] = null;
         Cursor objCursor = readSQLite.query(true,REGISTER_TABLE,
-                new String[]{COLUMN_ID_REGISTER}, COLUMN_TERMID_REGISTER+"=?",new String[]{"เทอม 1 ม.3"} , null, null, null, null);
+                new String[]{COLUMN_STUDENTID_REGISTER}, COLUMN_ID_REGISTER+"=?",new String[]{IDregis} , null, null, null, null);
         objCursor.moveToFirst();
         listRegisStatus = new String[objCursor.getCount()];
         for (int i = 0; i <objCursor.getCount(); i++) {
-            listRegisStatus[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_ID_REGISTER));
+            listRegisStatus[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_STUDENTID_REGISTER));
             objCursor.moveToNext();
         }//for
         objCursor.close();

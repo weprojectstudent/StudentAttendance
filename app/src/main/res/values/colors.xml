@@ -6,4 +6,6 @@
     <color name="colorAlert">#00ffffff</color>
     <color name="colorbg0">#d0ffffff</color>
     <color name="colorbg1">#96ffffff</color>
+    <color name="colorbgnotcome">#61ff6c6c</color>
+    <color name="colorbgcome">#967ff96d</color>
 </resources>

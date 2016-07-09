@@ -40,4 +40,5 @@
     <string name="title_activity_menu">MenuActivity</string>
     <string name="title_activity_select_list_student">SelectListStudent</string>
     <string name="title_activity_alert_management">จัดการบันทึก</string>
+    <string name="title_activity_show_check_name_list_date">วันที่ทั้งหมด</string>
 </resources>

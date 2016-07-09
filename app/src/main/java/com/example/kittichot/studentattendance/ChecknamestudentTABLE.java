@@ -72,6 +72,21 @@ public class ChecknamestudentTABLE {
         return strlistID;
     }//IDREGIS
 
+    public String[] ChecknameDATEShowList(String idregis){
+        String strlistID[] = null;
+        Cursor cursor = readSQLite.query(CHECKNAMESTUDENT_TABLE, new String[]{COLUMN_DATE_CHECKNAME},
+                COLUMN_ID_REGISTER+"=?",new String[]{idregis}, null, null,null, null);
+        cursor.moveToFirst();
+        strlistID = new String[cursor.getCount()];
+        for (int i = 0; i < cursor.getCount(); i++) {
+            strlistID[i] = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_CHECKNAME));
+            cursor.moveToNext();
+
+        }//for
+        cursor.close();
+        return strlistID;
+    }//IDREGIS
+
     public String[] ChecknameSTATUS(){
         String strlistID[] = null;
         Cursor cursor = readSQLite.query(CHECKNAMESTUDENT_TABLE, new String[]{COLUMN_STATUS_CHECKNAME},
@@ -86,7 +101,20 @@ public class ChecknamestudentTABLE {
         cursor.close();
         return strlistID;
     }//IDREGIS
+    public String[] ChecknameSTATUSFordate(String id,String date){
+        String strlistID[] = null;
+        Cursor cursor = readSQLite.query(CHECKNAMESTUDENT_TABLE, new String[]{COLUMN_STATUS_CHECKNAME},
+                COLUMN_ID_REGISTER+"=?"+" AND "+COLUMN_DATE_CHECKNAME+"=?", new String[]{id,date}, null,null, null);
+        cursor.moveToFirst();
+        strlistID = new String[cursor.getCount()];
+        for (int i = 0; i < cursor.getCount(); i++) {
+            strlistID[i] = cursor.getString(cursor.getColumnIndex(COLUMN_STATUS_CHECKNAME));
+            cursor.moveToNext();
 
+        }//for
+        cursor.close();
+        return strlistID;
+    }//IDREGIS
     public String[] ChecknameIDQuery(){
         String strlistID[] = null;
         Cursor cursor = readSQLite.query(true,CHECKNAMESTUDENT_TABLE, new String[]{COLUMN_DATE_CHECKNAME},
@@ -116,11 +144,20 @@ public class ChecknamestudentTABLE {
         cursor.close();
         return strlistID;
     }//IDREGIS
-    /*public String[] strings(){
-        Cursor cursor = readSQLite.rawQuery()
+    public String[] IDregisFordate(String date,String id){
+        String strlistID[] = null;
+        Cursor cursor = readSQLite.query(true,CHECKNAMESTUDENT_TABLE, new String[]{COLUMN_ID_REGISTER},
+                COLUMN_DATE_CHECKNAME+"=?"+" AND "+COLUMN_ID_REGISTER+"=?",new String[]{date,id}, null,null,null,null);
+        cursor.moveToFirst();
+        strlistID = new String[cursor.getCount()];
+        for (int i = 0; i < cursor.getCount(); i++) {
+            strlistID[i] = cursor.getString(cursor.getColumnIndex(COLUMN_ID_REGISTER));
+            cursor.moveToNext();
 
-        return new String[0];
-    }*/
+        }//for
+        cursor.close();
+        return strlistID;
+    }//IDREGIS
 
 
     public long addValueCheckname(int register_id,String checkname_date,int checkname_status){
