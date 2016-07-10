@@ -24,7 +24,7 @@ public class ShowCheckNameListDate extends ActionBarActivity {
     private ListView objListView,objListViewDialog;
     private String getIntentRoom, getInTentTERM,getInTentSubject,getInTentUser;
     private String[] IDstudent,IDregis,NameStudent,SurnameStudent,NoStudent,IDSubject,IDTERM,IDregisfordate,
-            DateCheckname,IDStudentforDate,Status;
+            DateCheckname,IDStudentforDate,Status,getIDstudent;
     private String strIDstudent,strIDregis,strNameStudent,strSurnameStudent,strRoomStudent,strIDSubject,
             strIDTERM, strDateCheckname;
     private TextView txtRoom, txtSubject,txtUSER;
@@ -111,41 +111,49 @@ public class ShowCheckNameListDate extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 strDateCheckname=arrayList.get(position);
-                showalert();
-            }
-        });
+                final Dialog dialog = new Dialog(ShowCheckNameListDate.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setTitle("รายการของวันที่ "+strDateCheckname);
+                dialog.setContentView(R.layout.alertcustom);
+                dialog.setCancelable(true);
+                Button button1 = (Button)dialog.findViewById(R.id.button7);
+                button1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(ShowCheckNameListDate.this, "Close dialog", Toast.LENGTH_SHORT).show();
+                        dialog.cancel();
+                    }
+                });
+                IDStudentforDate = objStudentTABLE.ListIDStudent(getIntentRoom);
+                final ArrayList<String> arrayListStatus = new ArrayList<String>();
+                final ArrayList<String> arrayListIDstudent = new ArrayList<String>();
+                final ArrayList<String> arrayListnamestudent = new ArrayList<String>();
+                final ArrayList<String> arrayListsurnamestudent = new ArrayList<String>();
+                final ArrayList<String> arrayListNOstudent = new ArrayList<String>();
 
-    }//CreateListview
+                for (int i = 0; i < IDStudentforDate.length; i++) {
+                    String[] IDregister = objRegisterTABLE.ListRegisIDstudentandterm(Integer.parseInt(IDStudentforDate[i]), getInTentTERM);
+                    for (int i1 = 0; i1 < IDregister.length; i1++) {
+                        IDregisfordate = objChecknamestudentTABLE.IDregisFordate(strDateCheckname, IDregister[i1]);
+                        Status = objChecknamestudentTABLE.ChecknameSTATUSFordate(IDregisfordate[i1], strDateCheckname);
+                        for (int i2 = 0; i2 < IDregisfordate.length; i2++) {
+                            arrayListStatus.add(Status[i2]);
+                            getIDstudent = objRegisterTABLE.ListIDStudentforIDregis(IDregisfordate[i2]);
+                            for (int i3 = 0; i3 < getIDstudent.length; i3++) {
+                                NameStudent = objStudentTABLE.ListNameStudent(getIDstudent[i3]);
+                                SurnameStudent = objStudentTABLE.ListSurNameStudent(getIDstudent[i3]);
+                                NoStudent = objStudentTABLE.ListNoStudentIDREGIS(getIDstudent[i3]);
+                                arrayListIDstudent.add(getIDstudent[i3]);
+                                for (int i4 = 0; i4 < NameStudent.length; i4++) {
+                                    arrayListnamestudent.add(NameStudent[i4]);
+                                    arrayListsurnamestudent.add(SurnameStudent[i4]);
+                                    arrayListNOstudent.add(NoStudent[i4]);
+                                }
+                            }
 
-    private void showalert() {
-
-        final Dialog dialog = new Dialog(ShowCheckNameListDate.this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setTitle("รายการของวันที่ "+strDateCheckname);
-        dialog.setContentView(R.layout.alertcustom);
-        dialog.setCancelable(true);
-        Button button1 = (Button)dialog.findViewById(R.id.button7);
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(ShowCheckNameListDate.this, "Close dialog", Toast.LENGTH_SHORT).show();
-                dialog.cancel();
-            }
-        });
-        IDStudentforDate = objStudentTABLE.ListIDStudent(getIntentRoom);
-        final ArrayList<String> arrayList = new ArrayList<String>();
-        for (int i = 0; i < IDStudentforDate.length; i++) {
-           String[] IDregister = objRegisterTABLE.ListRegisIDstudentandterm(Integer.parseInt(IDStudentforDate[i]), getInTentTERM);
-            for (int i1 = 0; i1 < IDregister.length; i1++) {
-                    IDregisfordate = objChecknamestudentTABLE.IDregisFordate(strDateCheckname, IDregister[i1]);
-                    Status = objChecknamestudentTABLE.ChecknameSTATUSFordate(IDregisfordate[i1], strDateCheckname);
-                for (int i2 = 0; i2 < IDregisfordate.length; i2++) {
-
-
+                        }
+                    }
                 }
-            }
-        }
-
         /*for (int i = 0; i < IDregisfordate.length; i++) {
 
             IDStudentforDate = objRegisterTABLE.ListIDStudentforIDregis(IDregisfordate[i]);
@@ -156,8 +164,18 @@ NameStudent = objStudentTABLE.ListNameStudent(IDStudentforDate[i]);
             }
 
         }*/
-        objListViewDialog = (ListView) dialog.findViewById(R.id.listViewStatusCheckname);
-      //  MyadapterListcheckstatus myadapterListcheckstatus = new MyadapterListcheckstatus();
+                objListViewDialog = (ListView) dialog.findViewById(R.id.listViewStatusCheckname);
+                MyadapterListcheckstatus myadapterListcheckstatus = new MyadapterListcheckstatus(ShowCheckNameListDate.this,arrayListIDstudent, arrayListnamestudent, arrayListsurnamestudent,arrayListNOstudent, arrayListStatus);
+                objListViewDialog.setAdapter(myadapterListcheckstatus);
+                dialog.show();
+
+            }
+        });
+
+    }//CreateListview
+
+    private void showalert() {
+
 
     }
 }//main
