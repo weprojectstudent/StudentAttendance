@@ -97,6 +97,20 @@ public class HomeworksendingTABLE {
         cursor.close();
         return strlistID;
     }//ID
+    public String[] ChecknameHomeworkIDC(String idHW,String IDrrgis,String datesent){
+        String strlistID[] = null;
+        Cursor cursor = readSQLite.query(true,HOMEWORKSENDING_TABLE, new String[]{COLUMN_ID_REGISTER},COLUMN_ID_HOMEWORK+"=?"
+                +" AND "+COLUMN_ID_REGISTER+"=?"+" AND "+COLUMN_DATESENT_HOMEWORKSENDING+"=?",new String[]{idHW,IDrrgis,datesent}, null,null,null,null);
+        cursor.moveToFirst();
+        strlistID = new String[cursor.getCount()];
+        for (int i = 0; i < cursor.getCount(); i++) {
+            strlistID[i] = cursor.getString(cursor.getColumnIndex(COLUMN_ID_REGISTER));
+            cursor.moveToNext();
+
+        }//for
+        cursor.close();
+        return strlistID;
+    }//IDREGIS
     public long AddAttendanceHomework(int ID,int IDREGIS ,String DATE,String STATUS){
         ContentValues objContentValues = new ContentValues();
         objContentValues.put(COLUMN_ID_HOMEWORK, ID);
@@ -104,6 +118,15 @@ public class HomeworksendingTABLE {
         objContentValues.put(COLUMN_DATESENT_HOMEWORKSENDING, DATE);
         objContentValues.put(COLUMN_STATUS_HOMEWORKSENDING, STATUS);
         return writerSQLite.insert(HOMEWORKSENDING_TABLE, null, objContentValues);
+
+    }
+
+    public long updateAttendanceHomework(int ID,int IDREGIS ,String DATE,String STATUS) {
+        ContentValues objValues = new ContentValues();
+        objValues.put(COLUMN_STATUS_HOMEWORKSENDING,STATUS);
+        return writerSQLite.update(HOMEWORKSENDING_TABLE, objValues,
+                COLUMN_ID_REGISTER + "=?"+" AND "+COLUMN_DATESENT_HOMEWORKSENDING+"=?"+" AND "+COLUMN_ID_HOMEWORK+"=?",
+                new String[]{String.valueOf(IDREGIS),DATE,String.valueOf(ID)});
 
     }
 }

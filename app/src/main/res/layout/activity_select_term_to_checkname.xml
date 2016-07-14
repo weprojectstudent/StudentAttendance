@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="เลือกรายการเทอมที่ต้องการเช็คชื่อ"
+        android:text="เลือกวิชาที่ต้องการเช็คชื่อ"
         android:textSize="20dp"
         android:id="@+id/textView28"
         android:layout_marginTop="20dp"

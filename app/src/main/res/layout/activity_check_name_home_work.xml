@@ -24,7 +24,7 @@
         android:layout_height="80dp"
         android:text="เช็คชื่อ"
         android:id="@+id/button11"
-        android:onClick="clickcheck"
+        android:onClick="clickcheckTohomework"
         android:layout_alignTop="@+id/buttonIntent"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />

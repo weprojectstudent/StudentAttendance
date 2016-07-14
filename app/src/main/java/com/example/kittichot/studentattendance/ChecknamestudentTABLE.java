@@ -18,11 +18,13 @@ public class ChecknamestudentTABLE {
     private final String COLUMN_ID_REGISTER = "register_id";
     private final String COLUMN_DATE_CHECKNAME = "checkname_date";
     private final String COLUMN_STATUS_CHECKNAME = "checkname_status";
+    private DateThai objDateThai;
 
     public ChecknamestudentTABLE(Context context) {
         objMyOpenHelper = new MyOpenHelper(context);
         writerSQLite = objMyOpenHelper.getWritableDatabase();
         readSQLite = objMyOpenHelper.getReadableDatabase();
+        objDateThai = new DateThai();
 
     }
 
@@ -64,7 +66,7 @@ public class ChecknamestudentTABLE {
         cursor.moveToFirst();
         strlistID = new String[cursor.getCount()];
         for (int i = 0; i < cursor.getCount(); i++) {
-            strlistID[i] = cursor.getString(cursor.getColumnIndex(COLUMN_DATE_CHECKNAME));
+            strlistID[i] = objDateThai.dateThaiUPloadValue(cursor.getString(cursor.getColumnIndex(COLUMN_DATE_CHECKNAME)));
             cursor.moveToNext();
 
         }//for

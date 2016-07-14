@@ -180,10 +180,6 @@
             android:logo="@drawable/logo"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SelectDateToListChecknameActivity"
-            android:logo="@drawable/logo"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ShowCheckNameListDate"
             android:label="@string/title_activity_show_check_name_list_date"></activity>
     </application>

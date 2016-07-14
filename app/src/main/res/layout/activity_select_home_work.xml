@@ -13,10 +13,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="เลือกรายการการบ้านที่ต้องการเช็คชื่อ"
+        android:text="เลือกรายการการบ้าน"
         android:textSize="20dp"
-        android:id="@+id/textView28"
-        android:layout_marginTop="50dp" />
+        android:id="@+id/textView28" />
 
     <Spinner
         android:layout_width="match_parent"
@@ -28,13 +27,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="เลือกรายการเทอมที่ต้องการเช็คชื่อ"
+        android:text="เลือกวิชาที่ต้องการเช็คชื่อ"
         android:textSize="20dp"
         android:id="@+id/textView29"
         android:layout_below="@+id/spinnerselectyearhome"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="5dp" />
 
     <Spinner
         android:layout_width="match_parent"
@@ -53,7 +52,8 @@
         android:onClick="clicktoCheckHW"
         android:layout_alignParentBottom="false"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/spinnerIDTermHWtocheck" />
+        android:layout_below="@+id/spinner3"
+        android:layout_marginTop="5dp" />
 
     <Spinner
         android:layout_width="match_parent"
@@ -67,11 +67,31 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="เลือกรายการเทอมที่ต้องการเช็คชื่อ"
+        android:text="เลือกเทอมที่ต้องการเช็คชื่อ"
         android:textSize="20dp"
         android:id="@+id/textView38"
         android:layout_below="@+id/spinnerHWIDtocheck"
         android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="เลือกห้องของนักเรียน"
+        android:textSize="20dp"
+        android:id="@+id/textView58"
+        android:layout_below="@+id/spinnerIDTermHWtocheck"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="5dp" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner3"
+        android:layout_below="@+id/textView58"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="10dp" />
 

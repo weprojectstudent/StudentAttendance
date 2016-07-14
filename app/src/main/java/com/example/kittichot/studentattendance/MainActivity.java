@@ -64,9 +64,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         objTeachdetailTABLE = new TeachdetailTABLE(this);
         objStudentTABLE = new StudentTABLE(this);
         objDateThai = new DateThai();
-
         addValue();
-        exportDatabaseFile(this,"StudentAttendance");
     }//onCreate
     public boolean exportDatabaseFile(Context context, String dbName) {
         try {
@@ -87,7 +85,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     }
 
     private void addValue() {
-        cd = new ConnectionDetector(getApplicationContext());
+        cd = new ConnectionDetector(MainActivity.this);
         isInternetPresent = cd.isConnectingToInternet();
 
         // ตรวจสอบสถานะการเชื่อมต่ออินเตอร์เน็ต
@@ -169,11 +167,11 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     private void deleteAll() {
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase("StudentAttendance.db", MODE_PRIVATE, null);
-        //sqLiteDatabase.delete("teacherTABLE", null, null);
-       // sqLiteDatabase.delete("subjectTABLE", null, null);
-       // sqLiteDatabase.delete("termTABLE", null, null);
+        sqLiteDatabase.delete("teacherTABLE", null, null);
+        //sqLiteDatabase.delete("subjectTABLE", null, null);
+        //sqLiteDatabase.delete("teachdetailTABLE", null, null);
         //sqLiteDatabase.delete("homeworkTABLE", null, null);
-        sqLiteDatabase.delete("studentTABLE", null, null);
+        //sqLiteDatabase.delete("studentTABLE", null, null);
 
     }
 

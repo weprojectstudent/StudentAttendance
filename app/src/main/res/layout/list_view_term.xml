@@ -8,15 +8,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
-        android:id="@+id/txtIDterm"
-        android:textSize="30dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="5dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
         android:id="@+id/txtIDsubject"
         android:textSize="20dp"
         android:layout_marginLeft="15dp"
@@ -44,5 +35,14 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="10dp"
             android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/txtIDterm"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:visibility="invisible"/>
     </LinearLayout>
 </LinearLayout>

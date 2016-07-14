@@ -248,7 +248,7 @@ public class TeachdetailTABLE {
 
     public String[] listTERMYearselected(String user) {
         String strlisttermyear[] = null;
-        Cursor objCursor = readSQLite.query(TEACHDETAILTABLE_TABLE,
+        Cursor objCursor = readSQLite.query(true,TEACHDETAILTABLE_TABLE,
                 new String[]{COLUMN_TERM_YEAR},COLUMN_TEACHER_USERNAME_T+"=?" ,new String[]{user}, null, null, null, null);
         objCursor.moveToFirst();
         strlisttermyear = new String[objCursor.getCount()];

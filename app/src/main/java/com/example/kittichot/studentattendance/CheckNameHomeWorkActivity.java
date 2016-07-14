@@ -25,14 +25,15 @@ public class CheckNameHomeWorkActivity extends ActionBarActivity {
     private SubjectTABLE objSubjectTABLE;
     private RegisterTABLE objregisterTABLE;
     private TeachdetailTABLE objTeachdetailTABLE;
-    private String[] getNameA, getIDA, getSurnameA, getClassroom, getNO, getNumID,getIDSubject,getNameSubject;
+    private DateThai objDateThai;
+    private String[] getNameA, getIDA, getSurnameA, getClassroom, getNO, getNumID,getIDSubject,getNameSubject,IDREGISALL;
     private String getActionScan,getdate;
     private HomeworksendingTABLE objHomeworksendingTABLE;
     private ArrayList<String> stringShow = new ArrayList<String>();
     private ArrayList<String> stringShowID = new ArrayList<String>();
     private int year_x,month_x, day_x;
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
-    private String getIntentIDTERM,getIntentIDHW,getIntentTITLE;
+    private String getIntentIDTERM,getIntentIDHW,getIntentTITLE,getIntentRoom;
     private int anInt;
     private TextView textViewIDHW,textViewTITIEHW,textViewIDTERM;
     @Override
@@ -44,6 +45,7 @@ public class CheckNameHomeWorkActivity extends ActionBarActivity {
         objregisterTABLE = new RegisterTABLE(this);
         objHomeworksendingTABLE = new HomeworksendingTABLE(this);
         objTeachdetailTABLE = new TeachdetailTABLE(this);
+        objDateThai = new DateThai();
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
@@ -54,9 +56,11 @@ public class CheckNameHomeWorkActivity extends ActionBarActivity {
         String strIDTERM = getIntent().getExtras().getString("IDTERM");
         String strIDHW = getIntent().getExtras().getString("IDHW");
         String strTITLE = getIntent().getExtras().getString("TITLE");
+        String strRoom = getIntent().getExtras().getString("Room");
         getIntentIDHW = strIDHW;
         getIntentTITLE = strTITLE;
         getIntentIDTERM = strIDTERM;
+        getIntentRoom = strRoom;
         getIDSubject = objTeachdetailTABLE.listSubjectIDTERM(getIntentIDTERM);
         for (int i = 0; i < getIDSubject.length; i++) {
             getNameSubject = objSubjectTABLE.listName(getIDSubject[i]);
@@ -115,9 +119,12 @@ public class CheckNameHomeWorkActivity extends ActionBarActivity {
                 String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
                 String s = contents;
                 getNumID = objregisterTABLE.ListRegisIDstudentandterm(Integer.parseInt(s), getIntentIDTERM);
-                if (getNumID.length>=1){
+                if (getNumID.length >= 1) {
                     strings.add(s);
                     stringID.add(getNumID[0]);
+                } else {
+                    MyAlertDialog myAlertDialog = new MyAlertDialog();
+                    myAlertDialog.errorDiaLog(this,"ไม่พบข้อมูล","ไม่พบของนักเรีบน ในวิชานี้");
                 }
 
                 for (int i = 0; i < strings.size(); i++) {
@@ -159,8 +166,8 @@ public class CheckNameHomeWorkActivity extends ActionBarActivity {
         AlertDialog objAlertDialog = builder.create();
         objAlertDialog.show();
     }//showmenu
-    public void clickcheck(View view){
-        getdate = year_x + "-" + month_x + "-" + day_x;
+    public void clickcheckTohomework(View view){
+        /*getdate = year_x + "-" + month_x + "-" + day_x;
         for (int s = 0;s<stringShowID.size();s++){
             String s1 = stringShowID.get(s);
             objHomeworksendingTABLE.AddAttendanceHomework(Integer.parseInt(getIntentIDHW),Integer.parseInt(s1), getdate,"0");
@@ -186,9 +193,60 @@ public class CheckNameHomeWorkActivity extends ActionBarActivity {
                 dialog.dismiss();
             }
         });
+        myAlertDialog.show();*/
+
+        String room = getIntent().getExtras().getString("Room");
+        getdate = year_x + "-" + month_x + "-" + day_x;
+        String[] strings = objStudentTABLE.ListIDStudent(room);
+        int num = strings.length;
+        int numrow =0;
+        for (int i = 0; i < strings.length; i++) {
+            IDREGISALL = objregisterTABLE.ListRegisIDforterm(getIntentIDTERM,strings[i]);
+            for (int i1 = 0; i1 < IDREGISALL.length; i1++) {
+                String[] s = objHomeworksendingTABLE.ChecknameHomeworkIDC(getIntentIDHW,IDREGISALL[i1],objDateThai.dateThai(getdate));
+                if (s.length < 1) {
+                    objHomeworksendingTABLE.AddAttendanceHomework(Integer.parseInt(getIntentIDHW),Integer.parseInt(IDREGISALL[i1]), objDateThai.dateThai(getdate),"1");
+                } else {
+
+                }
+                numrow++;
+            }
+        }
+        if (numrow == num) {
+            onupdate();
+       }
+
+
+
+    }
+
+    private void onupdate() {
+        for (int s = 0;s<stringShowID.size();s++){
+            String s1 = stringShowID.get(s);
+            //objChecknamestudentTABLE.addValueCheckname(Integer.parseInt(s1), getdate, 0);
+            objHomeworksendingTABLE.updateAttendanceHomework(Integer.parseInt(getIntentIDHW),Integer.parseInt(s1),objDateThai.dateThai(getdate),"0");
+        }
+        ArrayList<String> string = new ArrayList<String>();
+        for (int i=0;i<stringShow.size();i++){
+
+            string.add(stringShow.get(i)+"\n");
+        }
+        //final CharSequence[] items = strings.toArray(new CharSequence[strings.size()]);
+        int s = string.toString().length()-1;
+        int s5 = stringShowID.toString().length()-1;
+        AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(CheckNameHomeWorkActivity.this);
+        myAlertDialog.setTitle("ทำการเช็คชื่อรักเรียน");
+        myAlertDialog.setIcon(R.drawable.user);
+        //myAlertDialog.setMessage(string.toString().substring(1,s));
+        myAlertDialog.setMessage(string.toString().substring(1,s));
+        myAlertDialog.setCancelable(false);
+        myAlertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
         myAlertDialog.show();
-
-
     }
     public void onBackPressed(){
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
