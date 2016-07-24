@@ -7,61 +7,60 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.kittichot.studentattendance.ShowCheckname"
+    tools:context="com.example.kittichot.studentattendance.SelectHomeworkToLIstCheckname"
     android:background="@drawable/bg">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ตกลง"
+        android:id="@+id/button14"
+        android:onClick="ClickshowCheck"
+        android:layout_below="@+id/spinner6"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spinnerTermYearShow"
-        android:layout_below="@+id/textView39"
+        android:id="@+id/spinner4"
+        android:layout_below="@+id/textView41"
         android:layout_marginTop="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="เลือกปีการศึกษา"
-        android:id="@+id/textView39"
+        android:id="@+id/textView41"
         android:layout_marginTop="30dp" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spinnertermShowCheck"
-        android:layout_below="@+id/textView43"
+        android:id="@+id/spinner5"
+        android:layout_below="@+id/textView59"
         android:layout_marginTop="10dp" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spinnerRoomShowCheck"
-        android:layout_below="@+id/textView44"
+        android:id="@+id/spinner6"
+        android:layout_below="@+id/textView60"
         android:layout_marginTop="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="เลือกวิชาที่ต้องการ"
-        android:id="@+id/textView43"
-        android:layout_below="@+id/spinnerTermYearShow"
+        android:id="@+id/textView59"
+        android:layout_below="@+id/spinner4"
         android:layout_marginTop="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="เลือกห้องนักเรียน"
-        android:id="@+id/textView44"
-        android:layout_below="@+id/spinnertermShowCheck"
+        android:id="@+id/textView60"
+        android:layout_below="@+id/spinner5"
         android:layout_marginTop="10dp" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ตกลง"
-        android:id="@+id/btnShowCheck"
-        android:onClick="ClickshowCheck"
-        android:layout_below="@+id/spinnerRoomShowCheck"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="41dp" />
-
 </RelativeLayout>

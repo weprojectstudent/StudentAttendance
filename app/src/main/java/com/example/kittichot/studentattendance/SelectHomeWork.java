@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -47,14 +48,7 @@ public class SelectHomeWork extends ActionBarActivity {
         setAllArray();
         //createSpinnerYear();
     }
-    @Override
-    public boolean onOptionsItemSelected (MenuItem item){
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-            onBackPressed();
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
     //newroom
     private void setAllArray() {
         strIDteacher = getIntent().getExtras().getString("Username");
@@ -282,5 +276,33 @@ public class SelectHomeWork extends ActionBarActivity {
         intent.putExtra("Room", getRoom);
         startActivity(intent);
 
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu2,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.showChecknameItem:
+                Intent intent1 = new Intent(SelectHomeWork.this, SelectHomeworkToLIstCheckname.class);
+                intent1.putExtra("Username", strIDteacher);
+                startActivity(intent1);
+                return true;
+            case R.id.Exit:
+                onBackPressed();
+                return true;
+            case R.id.Cancle:
+                return true;
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
