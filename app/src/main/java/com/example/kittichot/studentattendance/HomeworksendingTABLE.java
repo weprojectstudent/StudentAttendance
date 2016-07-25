@@ -25,7 +25,65 @@ public class HomeworksendingTABLE {
         writerSQLite = objMyOpenHelper.getWritableDatabase();
         readSQLite = objMyOpenHelper.getReadableDatabase();
     }
+    public String[] ChecknameSTATUSFordate(String id,String date){
+        String strlistID[] = null;
+        Cursor cursor = readSQLite.query(HOMEWORKSENDING_TABLE, new String[]{COLUMN_STATUS_HOMEWORKSENDING},
+                COLUMN_ID_REGISTER+"=?"+" AND "+COLUMN_ID_HOMEWORK+"=?", new String[]{id,date}, null,null, null);
+        cursor.moveToFirst();
+        strlistID = new String[cursor.getCount()];
+        for (int i = 0; i < cursor.getCount(); i++) {
+            strlistID[i] = cursor.getString(cursor.getColumnIndex(COLUMN_STATUS_HOMEWORKSENDING));
+            cursor.moveToNext();
 
+        }//for
+        cursor.close();
+        return strlistID;
+    }//IDREGIS
+
+    public String[] IDregisFordate(String idhw,String id){
+        String strlistID[] = null;
+        Cursor cursor = readSQLite.query(true,HOMEWORKSENDING_TABLE, new String[]{COLUMN_ID_REGISTER},
+                COLUMN_ID_HOMEWORK+"=?"+" AND "+COLUMN_ID_REGISTER+"=?",new String[]{idhw,id}, null,null,null,null);
+        cursor.moveToFirst();
+        strlistID = new String[cursor.getCount()];
+        for (int i = 0; i < cursor.getCount(); i++) {
+            strlistID[i] = cursor.getString(cursor.getColumnIndex(COLUMN_ID_REGISTER));
+            cursor.moveToNext();
+
+        }//for
+        cursor.close();
+        return strlistID;
+    }//IDREGIS
+
+    public String[] CheckHWSDIDforListAttendance(String idregis) {
+        String strlistID[] = null;
+        Cursor cursor = readSQLite.query(HOMEWORKSENDING_TABLE, new String[]{COLUMN_ID_HOMEWORK},
+                COLUMN_ID_REGISTER + "=?", new String[]{idregis}, null, null, null);
+        cursor.moveToFirst();
+        strlistID = new String[cursor.getCount()];
+        for (int i = 0; i < cursor.getCount(); i++) {
+            strlistID[i] = cursor.getString(cursor.getColumnIndex(COLUMN_ID_HOMEWORK));
+            cursor.moveToNext();
+
+        }//for
+        cursor.close();
+        return strlistID;
+    }
+
+    public String[] CheckHWSDNameforListAttendance(String idHomework) {
+        String strlistID[] = null;
+        Cursor cursor = readSQLite.query(HOMEWORKSENDING_TABLE, new String[]{COLUMN_ID_HOMEWORK},
+                COLUMN_ID_HOMEWORK + "=?", new String[]{idHomework}, null, null, null);
+        cursor.moveToFirst();
+        strlistID = new String[cursor.getCount()];
+        for (int i = 0; i < cursor.getCount(); i++) {
+            strlistID[i] = cursor.getString(cursor.getColumnIndex(COLUMN_ID_HOMEWORK));
+            cursor.moveToNext();
+
+        }//for
+        cursor.close();
+        return strlistID;
+    }
     public String[] CheckHWSDIDFull(){
         String strlistID[] = null;
         Cursor cursor = readSQLite.query(HOMEWORKSENDING_TABLE, new String[]{COLUMN_ID_HOMEWORKSENDING},

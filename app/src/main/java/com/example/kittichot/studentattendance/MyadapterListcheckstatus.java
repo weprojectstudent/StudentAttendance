@@ -15,15 +15,18 @@ import java.util.ArrayList;
 public class MyadapterListcheckstatus extends BaseAdapter {
     private Context objContext;
     private ArrayList<String> IDstudent,Namestudent,Surnamestudent,No,status;
+    private String strstatusyes, strstatusno;
 
 
-    public MyadapterListcheckstatus(Context objContext, ArrayList<String> IDstudent, ArrayList<String> namestudent, ArrayList<String> surnamestudent, ArrayList<String> no, ArrayList<String> status) {
+    public MyadapterListcheckstatus(Context objContext, ArrayList<String> IDstudent, ArrayList<String> namestudent, ArrayList<String> surnamestudent, ArrayList<String> no, ArrayList<String> status,String statusCheckyes,String statusCheckno) {
         this.objContext = objContext;
         this.IDstudent = IDstudent;
         this.Namestudent = namestudent;
         this.Surnamestudent = surnamestudent;
         this.No = no;
         this.status = status;
+        this.strstatusyes = statusCheckyes;
+        this.strstatusno = statusCheckno;
     }
 
     @Override
@@ -65,9 +68,9 @@ public class MyadapterListcheckstatus extends BaseAdapter {
 
         TextView txtView4 = (TextView) view.findViewById(R.id.textView56);
         if (status.get(position).equals("1")) {
-            txtView4.setText("ขาดเรียน");
+            txtView4.setText(strstatusno);
         } else {
-            txtView4.setText("เข้าเรียน");
+            txtView4.setText(strstatusyes);
         }
 
 

@@ -16,48 +16,49 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class ShowCheckNameListDate extends ActionBarActivity {
-    private ChecknamestudentTABLE objChecknamestudentTABLE;
+public class ShowListHomeworkCheck extends ActionBarActivity {
+    //private ChecknamestudentTABLE objChecknamestudentTABLE;
     private StudentTABLE objStudentTABLE;
     private RegisterTABLE objRegisterTABLE;
-    private TeachdetailTABLE objTeachdetailTABLE;
+    ///private TeachdetailTABLE objTeachdetailTABLE;
+    private HomeworkTABLE objHomeworkTABLE;
+    private HomeworksendingTABLE objHomeworksendingTABLE;
     private ListView objListView,objListViewDialog;
     private String getIntentRoom, getInTentTERM,getInTentSubject,getInTentUser;
     private String[] IDstudent,IDregis,NameStudent,SurnameStudent,NoStudent,IDSubject,IDTERM,IDregisfordate,
-            DateCheckname,IDStudentforDate,Status,getIDstudent;
+            HWCheckname,IDStudentforDate,Status,getIDstudent,nameHomeWork;
     private String strIDstudent,strIDregis,strNameStudent,strSurnameStudent,strRoomStudent,strIDSubject,
-            strIDTERM, strDateCheckname;
-    private TextView txtRoom, txtSubject,txtUSER;
+            strIDTERM, strDateCheckname,strNameHW,strIDHW;
+    private TextView txtRoomS, txtSubjectS,txtUSERS;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_show_list_homework_check);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setLogo(R.drawable.logo2);
-        setContentView(R.layout.activity_show_check_name_list_date);
-        objChecknamestudentTABLE = new ChecknamestudentTABLE(this);
         objRegisterTABLE = new RegisterTABLE(this);
         objStudentTABLE = new StudentTABLE(this);
-        objTeachdetailTABLE = new TeachdetailTABLE(this);
-        BindWidget();
-    }//onCreate
-
-    private void BindWidget() {
+        objHomeworksendingTABLE = new HomeworksendingTABLE(this);
+        objHomeworkTABLE = new HomeworkTABLE(this);
         getIntentRoom = getIntent().getExtras().getString("ROOM");
         getInTentTERM = getIntent().getExtras().getString("TERM");
         getInTentSubject = getIntent().getExtras().getString("SUBJECT");
         getInTentUser = getIntent().getExtras().getString("USERNAME");
-        txtRoom = (TextView) findViewById(R.id.textView48);
-        txtRoom.setText(getInTentSubject);
-        txtSubject = (TextView) findViewById(R.id.textView50);
-        txtSubject.setText(getIntentRoom);
-        txtUSER = (TextView) findViewById(R.id.textView51);
-        txtUSER.setText(getInTentUser);
-        objListView = (ListView) findViewById(R.id.listViewShowDatelist);
-    }//bindwidget
+        Bindwidget();
+    }
 
+    private void Bindwidget() {
+        txtSubjectS = (TextView) findViewById(R.id.textView62);
+        txtRoomS = (TextView) findViewById(R.id.textView64);
+        txtUSERS = (TextView) findViewById(R.id.textView65);
+        txtSubjectS.setText(getInTentSubject);
+        txtRoomS.setText(getIntentRoom);
+        txtUSERS.setText(getInTentUser);
+        objListView = (ListView) findViewById(R.id.listView);
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int i = item.getItemId();
@@ -72,55 +73,60 @@ public class ShowCheckNameListDate extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        createListView();
+         createListView();
     }
-
     private void createListView() {
         final ArrayList<String> arrayList = new ArrayList<String>();
+        final ArrayList<String> arrayListName = new ArrayList<String>();
         int b = 0;
         IDstudent = objStudentTABLE.ListIDStudent(getIntentRoom);
-       // for (int i = 0; i < IDstudent.length;i++) {
-           IDregis = objRegisterTABLE.ListRegisIDforterm(getInTentTERM,IDstudent[0]);
-            for (int i1 = 0; i1 < IDregis.length; i1++) {
-              DateCheckname = objChecknamestudentTABLE.ChecknameDATEShowList(IDregis[i1]);
-                for (int i2 = 0; i2 < DateCheckname.length; i2++) {
-                    for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                        if (arrayList.get(i3).equals(DateCheckname[i2]) ) {
-                            b++;
-                       } else {
-
-                            b = 0;
-                        }//else1
-
-                    }//for4
-                    if (b >= 1) {
-
+        // for (int i = 0; i < IDstudent.length;i++) {
+        IDregis = objRegisterTABLE.ListRegisIDforterm(getInTentTERM,IDstudent[0]);
+        for (int i1 = 0; i1 < IDregis.length; i1++) {
+            HWCheckname = objHomeworksendingTABLE.CheckHWSDIDforListAttendance(IDregis[i1]);
+            for (int i2 = 0; i2 < HWCheckname.length; i2++) {
+                for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                    if (arrayList.get(i3).equals(HWCheckname[i2]) ) {
+                        b++;
                     } else {
-                        arrayList.add(DateCheckname[i2]);
 
+                        b = 0;
+                    }//else1
+
+                }//for4
+                if (b >= 1) {
+
+                } else {
+                    arrayList.add(HWCheckname[i2]);
+                    nameHomeWork = objHomeworkTABLE.listNameHWforAttendance(HWCheckname[i2]);
+                    for (int i = 0; i < nameHomeWork.length; i++) {
+                        arrayListName.add(nameHomeWork[i]);
                     }
-                }//for3
 
-            }//for2
+                }
+            }//for3
+
+        }//for2
 
         //}//for1
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_list_item_1, arrayList);
+                this, android.R.layout.simple_list_item_1, arrayListName);
         objListView.setAdapter(arrayAdapter);
         objListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                strDateCheckname=arrayList.get(position);
-                final Dialog dialog = new Dialog(ShowCheckNameListDate.this);
+                strIDHW=arrayList.get(position);
+                strNameHW = arrayListName.get(position);
+                final Dialog dialog = new Dialog(ShowListHomeworkCheck.this);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setTitle("รายการของวันที่ "+strDateCheckname);
+                dialog.setTitle("รายการของห้อง :"+getIntentRoom +" หัวข้อการบ้าน :"+strNameHW);
                 dialog.setContentView(R.layout.alertcustom);
                 dialog.setCancelable(true);
                 Button button1 = (Button)dialog.findViewById(R.id.button7);
                 button1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(ShowCheckNameListDate.this, "Close dialog", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ShowListHomeworkCheck.this, "Close dialog", Toast.LENGTH_SHORT).show();
                         dialog.cancel();
                     }
                 });
@@ -134,8 +140,8 @@ public class ShowCheckNameListDate extends ActionBarActivity {
                 for (int i = 0; i < IDStudentforDate.length; i++) {
                     String[] IDregister = objRegisterTABLE.ListRegisIDstudentandterm(Integer.parseInt(IDStudentforDate[i]), getInTentTERM);
                     for (int i1 = 0; i1 < IDregister.length; i1++) {
-                        IDregisfordate = objChecknamestudentTABLE.IDregisFordate(strDateCheckname, IDregister[i1]);
-                        Status = objChecknamestudentTABLE.ChecknameSTATUSFordate(IDregisfordate[i1], strDateCheckname);
+                        IDregisfordate = objHomeworksendingTABLE.IDregisFordate(strIDHW, IDregister[i1]);
+                        Status = objHomeworksendingTABLE.ChecknameSTATUSFordate(IDregisfordate[i1], strIDHW);
                         for (int i2 = 0; i2 < IDregisfordate.length; i2++) {
                             arrayListStatus.add(Status[i2]);
                             getIDstudent = objRegisterTABLE.ListIDStudentforIDregis(IDregisfordate[i2]);
@@ -154,7 +160,7 @@ public class ShowCheckNameListDate extends ActionBarActivity {
                         }
                     }
                 }
-        /*for (int i = 0; i < IDregisfordate.length; i++) {
+        for (int i = 0; i < IDregisfordate.length; i++) {
 
             IDStudentforDate = objRegisterTABLE.ListIDStudentforIDregis(IDregisfordate[i]);
             for (int i1 = 0; i1 < IDStudentforDate.length; i1++) {
@@ -163,9 +169,9 @@ NameStudent = objStudentTABLE.ListNameStudent(IDStudentforDate[i]);
                     NoStudent = objStudentTABLE.ListNoStudentIDREGIS(IDStudentforDate[i]);
             }
 
-        }*/
+        }
                 objListViewDialog = (ListView) dialog.findViewById(R.id.listViewStatusCheckname);
-                MyadapterListcheckstatus myadapterListcheckstatus = new MyadapterListcheckstatus(ShowCheckNameListDate.this,arrayListIDstudent, arrayListnamestudent, arrayListsurnamestudent,arrayListNOstudent, arrayListStatus,"เข้าเรียน","ขาดเรียน");
+                MyadapterListcheckstatus myadapterListcheckstatus = new MyadapterListcheckstatus(ShowListHomeworkCheck.this,arrayListIDstudent, arrayListnamestudent, arrayListsurnamestudent,arrayListNOstudent, arrayListStatus,"ส่ง","ไม่ส่ง");
                 objListViewDialog.setAdapter(myadapterListcheckstatus);
                 dialog.show();
 
@@ -174,8 +180,4 @@ NameStudent = objStudentTABLE.ListNameStudent(IDStudentforDate[i]);
 
     }//CreateListview
 
-    private void showalert() {
-
-
-    }
-}//main
+  }

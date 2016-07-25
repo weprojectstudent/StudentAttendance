@@ -341,6 +341,20 @@ public class HomeworkTABLE {
         cursor.close();
         return strlistDatesent;
     }//listStatusHWbackup
+
+    public  String[] listNameHWforAttendance(String IDHW) {
+        String strlistDatesent[] = null;
+        Cursor cursor = readSQLite.query(TABLE_Homework, new String[]{COLUMN_TITLE_Homework},COLUMN_ID_Homework+"=?",new String[]{IDHW}, null, null, null);
+        cursor.moveToFirst();
+        strlistDatesent = new String[cursor.getCount()];
+        for (int i = 0; i < cursor.getCount(); i++) {
+            strlistDatesent[i] = cursor.getString(cursor.getColumnIndex(COLUMN_TITLE_Homework));
+            cursor.moveToNext();
+
+        }//for
+        cursor.close();
+        return strlistDatesent;
+    }//listStatusHWbackup
     public long addValueToHomework(String strTitle, String strDetail,String datesave,String datesent, int strStatus) {
     ContentValues objContentValues = new ContentValues();
     //objContentValues.put(COLUMN_ID_Homework, intID);

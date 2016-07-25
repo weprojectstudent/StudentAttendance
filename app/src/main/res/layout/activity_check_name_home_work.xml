@@ -14,10 +14,11 @@
         android:layout_width="165dp"
         android:layout_height="80dp"
         android:onClick="scanQR"
-        android:text="Scan QR/Barcode"
+        android:text="Scan QR code"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="#000000" />
 
     <Button
         android:layout_width="165dp"
@@ -27,7 +28,8 @@
         android:onClick="clickcheckTohomework"
         android:layout_alignTop="@+id/buttonIntent"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:textColor="#000000" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -51,7 +53,8 @@
         android:id="@+id/textIDTERMCHW"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/buttonIntent"
-        android:layout_toEndOf="@+id/buttonIntent" />
+        android:layout_toEndOf="@+id/buttonIntent"
+        android:textColor="#000000" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -71,6 +74,7 @@
         android:layout_below="@+id/textIDTERMCHW"
         android:layout_alignLeft="@+id/textIDTERMCHW"
         android:layout_alignStart="@+id/textIDTERMCHW"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:textColor="#000000" />
 
 </RelativeLayout>

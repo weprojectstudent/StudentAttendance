@@ -54,7 +54,9 @@ public class HideSubjectActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
     private void BindWidget() {
+        String s = getIntent().getExtras().getString("user");
         txtShowTescher = (TextView) findViewById(R.id.textViewTeacherHide);
+        txtShowTescher.setText(s);
         objHideList = (ListView) findViewById(R.id.listViewHideSubject);
     }
     private void setAllArray() {

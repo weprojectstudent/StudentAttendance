@@ -1,8 +1,10 @@
 package com.example.kittichot.studentattendance;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -161,4 +163,22 @@ public class SelectHomeworkToLIstCheckname extends ActionBarActivity {
 
     }
 
+    public void clickIntentToShowList(View view){
+        Intent intent = new Intent(SelectHomeworkToLIstCheckname.this, ShowListHomeworkCheck.class);
+        intent.putExtra("ROOM", getRoom);
+        intent.putExtra("TERM", getIDTERM);
+        intent.putExtra("SUBJECT",getNAMESUBJECT);
+        intent.putExtra("USERNAME",getUsernameTeacher);
+        startActivity(intent);
+    }//clickIntentToShowList
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int i = item.getItemId();
+        if (i == android.R.id.home) {
+            onBackPressed();
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
 }

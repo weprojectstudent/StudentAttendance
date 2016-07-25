@@ -109,9 +109,9 @@ public class AddSubjectActivity extends ActionBarActivity {
     }//onCreate
 
     private void setUpShowTeacher() {
-
+        String strTextShowUser = getIntent().getExtras().getString("Username");
         String strTextShow = getIntent().getExtras().getString("Name");
-        txtShowTescher.setText(strTextShow);
+        txtShowTescher.setText(strTextShowUser);
     }
 
 
@@ -244,7 +244,9 @@ public class AddSubjectActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.showHideItem:
+                String strTextShow = getIntent().getExtras().getString("user");
                 Intent intent1 = new Intent(AddSubjectActivity.this, HideSubjectActivity.class);
+                intent1.putExtra("user", strTextShow);
                 startActivity(intent1);
                 return true;
             case R.id.Exit:

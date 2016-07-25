@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.kittichot.studentattendance">
+    package="com.example.kittichot.studentattendance" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -22,7 +22,7 @@
         android:icon="@drawable/logo"
         android:label="  StudentAttendance"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <service
             android:name=".notifications.NotificationIntentService"
             android:enabled="true"
@@ -32,7 +32,7 @@
             android:name=".AlarmReceiver"
             android:process=":remote" />
         <receiver android:name=".broadcast_receivers.NotificationEventReceiver" />
-        <receiver android:name=".broadcast_receivers.NotificationServiceStarterReceiver">
+        <receiver android:name=".broadcast_receivers.NotificationServiceStarterReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.TIMEZONE_CHANGED" />
@@ -43,7 +43,7 @@
         <activity
             android:name=".MainActivity"
             android:icon="@drawable/logo"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -182,7 +182,9 @@
         <activity
             android:name=".ShowCheckNameListDate"
             android:label="@string/title_activity_show_check_name_list_date" />
-        <activity android:name=".SelectHomeworkToLIstCheckname"></activity>
+        <activity android:name=".SelectHomeworkToLIstCheckname" />
+        <activity android:name=".ShowListHomeworkCheck" >
+        </activity>
     </application>
 
 </manifest>

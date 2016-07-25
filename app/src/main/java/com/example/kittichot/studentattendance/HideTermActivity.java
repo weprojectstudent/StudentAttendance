@@ -66,6 +66,7 @@ public class HideTermActivity extends ActionBarActivity {
         String strTextShowUser = getIntent().getExtras().getString("IDTeacher");
         strIDteacher = strTextShowUser;
         textTeacher = (TextView) findViewById(R.id.txtVteacherhide);
+        textTeacher.setText(strTextShowUser);
         objListView = (ListView) findViewById(R.id.listViewShowTermhide);
 
 

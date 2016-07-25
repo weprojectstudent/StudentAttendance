@@ -57,6 +57,8 @@ public class Homework_manament extends ActionBarActivity {
 
     private void bindwidget() {
         objTextViewTeacher = (TextView) findViewById(R.id.textView8);
+        String s = getIntent().getExtras().getString("Username");
+        objTextViewTeacher.setText(s);
         objListViewHomework = (ListView) findViewById(R.id.listViewhomework);
     }
 
@@ -126,7 +128,9 @@ public class Homework_manament extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.showHideItem:
+                String s = getIntent().getExtras().getString("Username");
                 Intent intent1 = new Intent(Homework_manament.this, HideHomeworkActivity.class);
+                intent1.putExtra("user",s);
                 startActivity(intent1);
                 return true;
             case R.id.Exit:

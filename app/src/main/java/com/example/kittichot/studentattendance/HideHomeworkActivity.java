@@ -40,7 +40,9 @@ public class HideHomeworkActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
     private void bindwidget() {
+        String s = getIntent().getExtras().getString("user");
         objTextViewTeacher = (TextView) findViewById(R.id.txtViewTeacherHideHW);
+        objTextViewTeacher.setText(s);
         objListViewHomework = (ListView) findViewById(R.id.listViewhomeworkHide);
     }//bindwidget
     private void setupAllArray() {

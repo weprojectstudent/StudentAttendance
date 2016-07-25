@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class HideAlertActivity extends ActionBarActivity {
     private ListView objListView;
@@ -16,6 +17,7 @@ public class HideAlertActivity extends ActionBarActivity {
     private String putusernameTeacher;
     private AlertTABLE objAlertTABLE;
     private DateThai objDateThai;
+    private TextView textView;
     @Override
     protected void onResume() {
         super.onResume();
@@ -39,7 +41,8 @@ public class HideAlertActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
     private void BindWidget() {
-
+        textView = (TextView) findViewById(R.id.textView25);
+        textView.setText(putusernameTeacher);
         objListView = (ListView) findViewById(R.id.listViewALERTHide);
 
     }

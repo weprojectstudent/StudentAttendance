@@ -15,7 +15,8 @@
             android:text="New Text"
             android:id="@+id/showTitle"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:textColor="#000000" />
 
         <TextView
             android:layout_width="wrap_content"
