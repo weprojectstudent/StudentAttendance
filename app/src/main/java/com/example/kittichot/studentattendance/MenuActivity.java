@@ -178,7 +178,7 @@ public class MenuActivity extends ActionBarActivity
             case 1:
                 mTitle = getString(R.string.title_section0);
                 break;
-            case 2:
+           /* case 2:
                 mTitle = getString(R.string.title_section1);
                 Intent intent0 = new Intent(this,MenuActivity.class);
                 createListPUTEXTRA();
@@ -186,8 +186,8 @@ public class MenuActivity extends ActionBarActivity
                 intent0.putExtra("Username", putExtraUSer);
 
                 startActivity(intent0);
-                break;
-            case 3:
+                break;*/
+            case 2:
                 mTitle = getString(R.string.title_section2);
                 Intent intent1 = new Intent(this,AddSubjectActivity.class);
                 createListPUTEXTRA();
@@ -195,7 +195,7 @@ public class MenuActivity extends ActionBarActivity
                 intent1.putExtra("Username", putExtraUSer);
                 startActivity(intent1);
                 break;
-            case 4:
+            case 3:
                 mTitle = getString(R.string.title_section3);
                 createListPUTEXTRA();
                 String strTextShow = getIntent().getExtras().getString("Name");
@@ -207,33 +207,33 @@ public class MenuActivity extends ActionBarActivity
                 intent3.putExtra("Username", putExtraUSer);
                 startActivity(intent3);
                 break;
-            case 5:  mTitle = getString(R.string.title_section4);
+            case 4:  mTitle = getString(R.string.title_section4);
                 createListPUTEXTRA();
                 Intent intent5 = new Intent(this, SelectListStudent.class);
                 intent5.putExtra("Name", putExtraNAme);
                 intent5.putExtra("Username", putExtraUSer);
                 startActivity(intent5);
                 break;
-            case 6: mTitle = getString(R.string.title_section5);
+            case 5: mTitle = getString(R.string.title_section5);
                 createListPUTEXTRA();
                 Intent intent6 = new Intent(this, Homework_manament.class);
                 intent6.putExtra("Name", putExtraNAme);
                 intent6.putExtra("Username", putExtraUSer);
                 startActivity(intent6);
                 break;
-            case 7: mTitle = getString(R.string.title_section6);
+            case 6: mTitle = getString(R.string.title_section6);
                 createListPUTEXTRA();
                 Intent intent = new Intent(MenuActivity.this, SelectTermToCheckname.class);
                 intent.putExtra("Username", putExtraUSer);
                 startActivity(intent);
                 break;
-            case 8: mTitle = getString(R.string.title_section7);
+            case 7: mTitle = getString(R.string.title_section7);
                 createListPUTEXTRA();
                 Intent intent8 = new Intent(MenuActivity.this, SelectHomeWork.class);
                 intent8.putExtra("Username", putExtraUSer);
                 startActivity(intent8);
                 break;
-            case 9: mTitle = getString(R.string.title_section8);
+            case 8: mTitle = getString(R.string.title_section8);
                 createListPUTEXTRA();
                 Intent intent9 = new Intent(MenuActivity.this, AlertManagement.class);
                 intent9.putExtra("Name", putExtraNAme);

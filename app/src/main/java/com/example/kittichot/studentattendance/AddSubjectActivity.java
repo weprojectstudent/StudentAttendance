@@ -133,7 +133,7 @@ public class AddSubjectActivity extends ActionBarActivity {
 
         txtShowTescher = (TextView) findViewById(R.id.textViewTeacher);
         objList = (ListView) findViewById(R.id.listViewSubject);
-        editText5 = (EditText) findViewById(R.id.editText5);
+        //editText5 = (EditText) findViewById(R.id.editText);
     }//bind widget
 
     private void createListView() {
