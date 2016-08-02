@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -18,15 +19,14 @@ public class MyadapterListcheckstatus extends BaseAdapter {
     private String strstatusyes, strstatusno;
 
 
-    public MyadapterListcheckstatus(Context objContext, ArrayList<String> IDstudent, ArrayList<String> namestudent, ArrayList<String> surnamestudent, ArrayList<String> no, ArrayList<String> status,String statusCheckyes,String statusCheckno) {
+    public MyadapterListcheckstatus(Context objContext, ArrayList<String> IDstudent, ArrayList<String> namestudent, ArrayList<String> surnamestudent, ArrayList<String> no, ArrayList<String> status) {
         this.objContext = objContext;
         this.IDstudent = IDstudent;
         this.Namestudent = namestudent;
         this.Surnamestudent = surnamestudent;
         this.No = no;
         this.status = status;
-        this.strstatusyes = statusCheckyes;
-        this.strstatusno = statusCheckno;
+
     }
 
     @Override
@@ -66,11 +66,11 @@ public class MyadapterListcheckstatus extends BaseAdapter {
         TextView txtView3 = (TextView) view.findViewById(R.id.textView57);
         txtView3.setText(No.get(position));
 
-        TextView txtView4 = (TextView) view.findViewById(R.id.textView56);
+        ImageView imageView = (ImageView) view.findViewById(R.id.imageView2);
         if (status.get(position).equals("1")) {
-            txtView4.setText(strstatusno);
+            imageView.setImageResource(R.drawable.pid);
         } else {
-            txtView4.setText(strstatusyes);
+            imageView.setImageResource(R.drawable.thuk);
         }
 
 

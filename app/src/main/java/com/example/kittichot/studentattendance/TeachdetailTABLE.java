@@ -29,7 +29,7 @@ public class TeachdetailTABLE {
         Cursor objCursor = readSQLite.query(TEACHDETAILTABLE_TABLE,
                 new String[]{COLUMN_TERM_ID,
                         COLUMN_SUBJECT_ID_T,COLUMN_TERM_STATUS},
-                COLUMN_TEACHER_USERNAME_T+"=?"+" AND "+COLUMN_TERM_STATUS+"=?"+" AND "+COLUMN_TERM_YEAR+"=?",new String[]{id,"0",year}, null, null, null);
+                COLUMN_TEACHER_USERNAME_T+"=?"+" AND "+COLUMN_TERM_STATUS+"=?"+" AND "+COLUMN_TERM_YEAR+"=?",new String[]{id,"0",year}, null, null, COLUMN_TERM_ID+" DESC");
         objCursor.moveToFirst();
         strlistSubjectID = new String[objCursor.getCount()];
         for (int i = 0; i < objCursor.getCount(); i++) {
@@ -59,7 +59,7 @@ public class TeachdetailTABLE {
         Cursor objCursor = readSQLite.query(TEACHDETAILTABLE_TABLE,
                 new String[]{COLUMN_TERM_ID,
                         COLUMN_SUBJECT_ID_T,COLUMN_TERM_STATUS},
-                COLUMN_TEACHER_USERNAME_T+"=?"+" AND "+COLUMN_TERM_STATUS+"=?"+" AND "+COLUMN_TERM_YEAR+"=?",new String[]{id,"0",year}, null, null, null);
+                COLUMN_TEACHER_USERNAME_T+"=?"+" AND "+COLUMN_TERM_STATUS+"=?"+" AND "+COLUMN_TERM_YEAR+"=?",new String[]{id,"0",year}, null, null, COLUMN_TERM_ID+" DESC");
         objCursor.moveToFirst();
         strlistterm = new String[objCursor.getCount()];
         for (int i = 0; i < objCursor.getCount(); i++) {

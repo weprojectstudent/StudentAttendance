@@ -28,7 +28,7 @@ public class SubjectTABLE {
 
         Cursor objCursor = readSqLite.query(SUBJECT_TABLE,
                 new String[]{COLUMN_SUBJECT_ID, COLUMN_SUBJECT_NAME,COLUMN_SUBJECT_STATUS},
-                COLUMN_SUBJECT_STATUS+"=?",new String[]{"0"},null,null,null);
+                COLUMN_SUBJECT_STATUS+"=?",new String[]{"0"},null,null,COLUMN_SUBJECT_ID+" DESC");
         objCursor.moveToFirst();
         strlistSname = new String[objCursor.getCount()];
         for (int i = 0; i < objCursor.getCount(); i++) {
@@ -62,7 +62,7 @@ public class SubjectTABLE {
         String strLisSubject[] = null;
         Cursor objCursor = readSqLite.query(SUBJECT_TABLE,
                 new String[]{COLUMN_SUBJECT_STATUS,COLUMN_SUBJECT_ID,COLUMN_SUBJECT_NAME},
-                COLUMN_SUBJECT_STATUS+"=?",new String[]{"0"},null,null,null);
+                COLUMN_SUBJECT_STATUS+"=?",new String[]{"0"},null,null,COLUMN_SUBJECT_ID+" DESC");
         objCursor.moveToFirst();
         strLisSubject = new String[objCursor.getCount()];
         for (int i = 0; i < objCursor.getCount(); i++) {

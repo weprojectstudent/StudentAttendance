@@ -171,7 +171,7 @@ NameStudent = objStudentTABLE.ListNameStudent(IDStudentforDate[i]);
 
         }
                 objListViewDialog = (ListView) dialog.findViewById(R.id.listViewStatusCheckname);
-                MyadapterListcheckstatus myadapterListcheckstatus = new MyadapterListcheckstatus(ShowListHomeworkCheck.this,arrayListIDstudent, arrayListnamestudent, arrayListsurnamestudent,arrayListNOstudent, arrayListStatus,"ส่ง","ไม่ส่ง");
+                MyadapterListcheckstatus myadapterListcheckstatus = new MyadapterListcheckstatus(ShowListHomeworkCheck.this,arrayListIDstudent, arrayListnamestudent, arrayListsurnamestudent,arrayListNOstudent, arrayListStatus);
                 objListViewDialog.setAdapter(myadapterListcheckstatus);
                 dialog.show();
 
