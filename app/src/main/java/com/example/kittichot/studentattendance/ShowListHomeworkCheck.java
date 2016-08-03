@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -120,13 +119,13 @@ public class ShowListHomeworkCheck extends ActionBarActivity {
                 final Dialog dialog = new Dialog(ShowListHomeworkCheck.this);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setTitle("รายการของห้อง :"+getIntentRoom +" หัวข้อการบ้าน :"+strNameHW);
-                dialog.setContentView(R.layout.alertcustom);
+                dialog.setContentView(R.layout.alertcustomHW);
                 dialog.setCancelable(true);
-                Button button1 = (Button)dialog.findViewById(R.id.button7);
+                Button button1 = (Button)dialog.findViewById(R.id.button7HW);
                 button1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(ShowListHomeworkCheck.this, "Close dialog", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(ShowListHomeworkCheck.this, "Close dialog", Toast.LENGTH_SHORT).show();
                         dialog.cancel();
                     }
                 });

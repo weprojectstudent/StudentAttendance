@@ -8,8 +8,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="รายชื่อนักเรียน เข้าเรียน-ขาดเรียน"
-        android:id="@+id/textView66"
+        android:text="รายชื่อนักเรียนที่ส่งงาน"
+        android:id="@+id/txtView66"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:textColor="#000000" />
@@ -17,7 +17,7 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listViewStatusCheckname"
+        android:id="@+id/listViewStatusChecknameHW"
         android:background="#c6fefefe"
         android:layout_marginTop="10dp" />
 
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CLOSE"
-        android:id="@+id/button7"
+        android:id="@+id/button7HW"
         android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

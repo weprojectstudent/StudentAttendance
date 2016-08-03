@@ -6,13 +6,12 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -118,10 +117,11 @@ public class CheckNameHomeWorkActivity extends ActionBarActivity {
                 String contents = intent.getStringExtra("SCAN_RESULT");
                 String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
                 String s = contents;
+
                 getNumID = objregisterTABLE.ListRegisIDstudentandterm(Integer.parseInt(s), getIntentIDTERM);
                 if (getNumID.length >= 1) {
-                    strings.add(s);
-                    stringID.add(getNumID[0]);
+                        strings.add(s);
+                        stringID.add(getNumID[0]);
                 } else {
                     MyAlertDialog myAlertDialog = new MyAlertDialog();
                     myAlertDialog.errorDiaLog(this,"ไม่พบข้อมูล","ไม่พบของนักเรีบน ในวิชานี้");
@@ -133,8 +133,9 @@ public class CheckNameHomeWorkActivity extends ActionBarActivity {
                     getSurnameA = objStudentTABLE.ListSurNameStudentIDREGIS(strings.get(i));
                     getClassroom = objStudentTABLE.ListClassRoomStudentIDREGIS(strings.get(i));
                     getNO = objStudentTABLE.ListNoStudentIDREGIS(strings.get(i));
+
                     for (int o = 0; o < getNameA.length; o++) {
-                        stringShow.add("รหัสในรายวิชา " + getNumID[o] + " รหัสประจำ " + strings.get(i) + "\n" + " ชื่อ " + String.valueOf(getNameA[o]) + " " + String.valueOf(getSurnameA[o]) + "\n" + "ห้อง " + String.valueOf(getClassroom[o]) + " เลขที่ " + String.valueOf(getNO[o]));
+                        stringShow.add("รหัสในรายวิชา " + getNumID[o] + " รหัสประจำ " + strings.get(i) + "\n" + "ชื่อ " + String.valueOf(getNameA[o]) + " " + String.valueOf(getSurnameA[o]) + "\n" + "ห้อง " + String.valueOf(getClassroom[o]) + " เลขที่ " + String.valueOf(getNO[o]));
                     }
                 }
 
@@ -275,8 +276,10 @@ public class CheckNameHomeWorkActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
         objListView = (ListView) findViewById(R.id.listNameCheckHW);
-        objListView.setAdapter(new ArrayAdapter(this
-                , android.R.layout.simple_list_item_1,stringShow));
+        MyAdapterCheckname myAdapterCheckname = new MyAdapterCheckname(CheckNameHomeWorkActivity.this,stringShow);
+        /*objListView.setAdapter(new ArrayAdapter(this
+                , android.R.layout.simple_list_item_1,stringShow));*/
+        objListView.setAdapter(myAdapterCheckname);
         objListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

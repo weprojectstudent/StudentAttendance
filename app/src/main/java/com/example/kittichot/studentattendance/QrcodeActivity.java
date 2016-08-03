@@ -12,7 +12,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -147,7 +146,7 @@ public class QrcodeActivity extends ActionBarActivity {
                         getClassroom = objStudentTABLE.ListClassRoomStudentIDREGIS(strings.get(i));
                         getNO = objStudentTABLE.ListNoStudentIDREGIS(strings.get(i));
                         for (int o = 0; o < getNameA.length; o++) {
-                            stringShow.add("รหัสในรายวิชา " + getNumID[o] + " รหัสประจำ " + strings.get(i) + "\n" + " ชื่อ " + String.valueOf(getNameA[o]) + " " + String.valueOf(getSurnameA[o]) + "\n" + "ห้อง " + String.valueOf(getClassroom[o]) + " เลขที่ " + String.valueOf(getNO[o]));
+                            stringShow.add("รหัสในรายวิชา " + getNumID[o] + " รหัสประจำ " + strings.get(i) + "\n" + "ชื่อ " + String.valueOf(getNameA[o]) + " " + String.valueOf(getSurnameA[o]) + "\n" + "ห้อง " + String.valueOf(getClassroom[o]) + " เลขที่ " + String.valueOf(getNO[o]));
                         }
                     }
 
@@ -264,8 +263,10 @@ public class QrcodeActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
         objListView = (ListView) findViewById(R.id.listNameCheck);
-        objListView.setAdapter(new ArrayAdapter(this
-                , android.R.layout.simple_list_item_1,stringShow));
+        /*objListView.setAdapter(new ArrayAdapter(this
+                , android.R.layout.simple_list_item_1,stringShow));*/
+        MyAdapterCheckname myAdapterCheckname = new MyAdapterCheckname(QrcodeActivity.this,stringShow);
+        objListView.setAdapter(myAdapterCheckname);
         objListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

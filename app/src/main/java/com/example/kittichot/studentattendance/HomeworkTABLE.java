@@ -33,7 +33,7 @@ public class HomeworkTABLE {
     public String[] listID() {
         String strlistID[] = null;
         Cursor cursor = readSQLite.query(TABLE_Homework, new String[]{COLUMN_ID_Homework},
-                COLUMN_STATUS_Homework + "=?",new String[]{"0"}, null, null, null);
+                COLUMN_STATUS_Homework + "=?",new String[]{"0"}, null, null, COLUMN_ID_Homework+" DESC");
         cursor.moveToFirst();
         strlistID = new String[cursor.getCount()];
         for (int i = 0; i < cursor.getCount(); i++) {
@@ -48,7 +48,7 @@ public class HomeworkTABLE {
     public String[] listTitle() {
         String strlistTitle[] = null;
         Cursor cursor = readSQLite.query(TABLE_Homework, new String[]{COLUMN_ID_Homework,
-                COLUMN_TITLE_Homework}, COLUMN_STATUS_Homework + "=?",new String[]{"0"}, null, null, null);
+                COLUMN_TITLE_Homework}, COLUMN_STATUS_Homework + "=?",new String[]{"0"}, null, null, COLUMN_ID_Homework+" DESC");
         cursor.moveToFirst();
         strlistTitle = new String[cursor.getCount()];
         for (int i = 0; i < cursor.getCount(); i++) {
@@ -62,7 +62,7 @@ public class HomeworkTABLE {
     public  String[] listDetail() {
         String strlistDetail[] = null;
         Cursor cursor = readSQLite.query(TABLE_Homework, new String[]{COLUMN_ID_Homework,
-                COLUMN_DETAILS_Homework}, COLUMN_STATUS_Homework + "=?",new String[]{"0"}, null, null, null);
+                COLUMN_DETAILS_Homework}, COLUMN_STATUS_Homework + "=?",new String[]{"0"}, null, null, COLUMN_ID_Homework+" DESC");
         cursor.moveToFirst();
         strlistDetail = new String[cursor.getCount()];
         for (int i = 0; i < cursor.getCount(); i++) {
@@ -77,7 +77,7 @@ public class HomeworkTABLE {
     public  String[] listDatesave() {
         String strlistDatesave[] = null;
         Cursor cursor = readSQLite.query(TABLE_Homework, new String[]{COLUMN_ID_Homework,
-                COLUMN_SAVEDATE_Homework}, COLUMN_STATUS_Homework + "=?",new String[]{"0"}, null, null, null);
+                COLUMN_SAVEDATE_Homework}, COLUMN_STATUS_Homework + "=?",new String[]{"0"}, null, null, COLUMN_ID_Homework+" DESC");
         cursor.moveToFirst();
         strlistDatesave = new String[cursor.getCount()];
         for (int i = 0; i < cursor.getCount(); i++) {
@@ -92,7 +92,7 @@ public class HomeworkTABLE {
     public  String[] listDatesent() {
         String strlistDatesent[] = null;
         Cursor cursor = readSQLite.query(TABLE_Homework, new String[]{COLUMN_ID_Homework,
-                COLUMN_SENTDATE_Homework}, COLUMN_STATUS_Homework + "=?",new String[]{"0"}, null, null, null);
+                COLUMN_SENTDATE_Homework}, COLUMN_STATUS_Homework + "=?",new String[]{"0"}, null, null, COLUMN_ID_Homework+" DESC");
         cursor.moveToFirst();
         strlistDatesent = new String[cursor.getCount()];
         for (int i = 0; i < cursor.getCount(); i++) {
