@@ -1,13 +1,17 @@
-package com.example.kittichot.studentattendance.broadcast_receivers;
+package com.example.kittichot.studentattendance.broadcast_receivers_alert;
 
+/**
+ * Created by kittichot on 5/8/2559.
+ */
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.content.WakefulBroadcastReceiver;
 import android.util.Log;
 
-import com.example.kittichot.studentattendance.notifications.NotificationIntentService;
+import com.example.kittichot.studentattendance.notificationsAlert.NotificationIntentServiceAlert;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -18,23 +22,32 @@ import java.util.Date;
  * WakefulBroadcastReceiver used to receive intents fired from the AlarmManager for showing notifications
  * and from the notification itself if it is deleted.
  */
-public class NotificationEventReceiver extends WakefulBroadcastReceiver {
+public class NotificationEventReceiverAlert extends WakefulBroadcastReceiver {
+
 
     private static final String ACTION_START_NOTIFICATION_SERVICE = "ACTION_START_NOTIFICATION_SERVICE";
     private static final String ACTION_DELETE_NOTIFICATION = "ACTION_DELETE_NOTIFICATION";
 
-    private static final double NOTIFICATIONS_INTERVAL_IN_HOURS = 0.1;
+    private static final int NOTIFICATIONS_INTERVAL_IN_HOURS = 1;
 
-    public static void setupAlarm(Context context) {
+    public static void setupAlarmalert(Context context) {
+        String namesp = "setting";
+        SharedPreferences sp = context.getSharedPreferences(namesp,Context.MODE_PRIVATE);
+        int H = Integer.parseInt(sp.getString("Hour",""));
+        int M = Integer.parseInt(sp.getString("minute",""));
+        Calendar targetCal = Calendar.getInstance();
+        targetCal.set(Calendar.HOUR_OF_DAY, H);
+        targetCal.set(Calendar.MINUTE, M);
+        //SharedPreferences.Editor editor = sp.edit();
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         PendingIntent alarmIntent = getStartPendingIntent(context);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+       /* alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
                 getTriggerAt(new Date()),
-                (long) (NOTIFICATIONS_INTERVAL_IN_HOURS * AlarmManager.INTERVAL_FIFTEEN_MINUTES),
-                alarmIntent);
+                NOTIFICATIONS_INTERVAL_IN_HOURS * AlarmManager.INTERVAL_FIFTEEN_MINUTES,
+                alarmIntent);*/
+        alarmManager.set(AlarmManager.RTC_WAKEUP, targetCal.getTimeInMillis(), alarmIntent);
     }
-
-    public static void cancelAlarm(Context context) {
+    public static void cancelAlarmalert(Context context) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         PendingIntent alarmIntent = getStartPendingIntent(context);
         alarmManager.cancel(alarmIntent);
@@ -48,25 +61,15 @@ public class NotificationEventReceiver extends WakefulBroadcastReceiver {
     }
 
     private static PendingIntent getStartPendingIntent(Context context) {
-        Intent intent = new Intent(context, NotificationEventReceiver.class);
+        Intent intent = new Intent(context, NotificationEventReceiverAlert.class);
         intent.setAction(ACTION_START_NOTIFICATION_SERVICE);
         return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     public static PendingIntent getDeleteIntent(Context context) {
-        Intent intent = new Intent(context, NotificationEventReceiver.class);
+        Intent intent = new Intent(context, NotificationEventReceiverAlert.class);
         intent.setAction(ACTION_DELETE_NOTIFICATION);
         return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-    }
-
-    public static PendingIntent getDeleteAlerm(Context context) {
-
-        Intent intent = new Intent(context, NotificationEventReceiver.class);
-        intent.setAction(ACTION_DELETE_NOTIFICATION);
-        cancelAlarm(context);
-        return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
     }
 
     @Override
@@ -75,10 +78,10 @@ public class NotificationEventReceiver extends WakefulBroadcastReceiver {
         Intent serviceIntent = null;
         if (ACTION_START_NOTIFICATION_SERVICE.equals(action)) {
             Log.i(getClass().getSimpleName(), "onReceive from alarm, starting notification service");
-            serviceIntent = NotificationIntentService.createIntentStartNotificationService(context);
+            serviceIntent = NotificationIntentServiceAlert.createIntentStartNotificationService(context);
         } else if (ACTION_DELETE_NOTIFICATION.equals(action)) {
             Log.i(getClass().getSimpleName(), "onReceive delete notification action, starting notification service to handle delete");
-            serviceIntent = NotificationIntentService.createIntentDeleteNotification(context);
+            serviceIntent = NotificationIntentServiceAlert.createIntentDeleteNotification(context);
         }
 
         if (serviceIntent != null) {

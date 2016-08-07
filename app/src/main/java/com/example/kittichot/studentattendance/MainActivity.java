@@ -16,8 +16,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.kittichot.studentattendance.broadcast_receivers.NotificationEventReceiver;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -225,7 +223,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         objAlert.setPositiveButton("ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                NotificationEventReceiver.setupAlarm(getApplicationContext());
+                //NotificationEventReceiver.setupAlarm(getApplicationContext());
                 Intent objIntent = new Intent(MainActivity.this, MenuActivity.class);
                 objIntent.putExtra("Name", strName);
                 objIntent.putExtra("Username", strUser);

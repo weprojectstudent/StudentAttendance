@@ -10,6 +10,7 @@ import java.util.Calendar;
  */
 public class DateThai {
     private String getdate;
+    private String Hour, Minute;
 
     public String dateThai(String strdate) {
         this.getdate = strdate;
@@ -395,4 +396,121 @@ public class DateThai {
         return String.format("%s-%s-%s", year-543,Months[month],DATE[day-1]);
     }
 
+    public String timesetAlert(String hour) {
+        this.Hour = hour;
+        String HOUR[] = {
+
+                "00" ,"01" ,"02" ,"03",
+                "04" ,"05" ,"06" ,"07",
+                "08" ,"09" ,"10" ,"11",
+                "12" ,"13" ,"14" ,"15",
+                "16" ,"17" ,"18" ,"19",
+                "20" ,"21" ,"22" ,"23"};
+
+
+        String MINUTE[] = {
+                "00","01","02","03","04","05",
+                "06","07","08","09","10",
+                "11","12","13","14","15",
+                "16","17","18","19","20",
+                "21","22","23","24","25",
+                "26","27","28","29","30",
+                "31","32","33","34","35",
+                "36","37","38","39","40",
+                "41","42","43","44","45",
+                "46","47","48","49","50",
+                "51","52","53","54","55",
+                "56","57","58","59"
+        };
+
+        DateFormat df = new SimpleDateFormat("HH");
+        //TimeFormatException tf = new TimeFormatException("");
+
+        int newHour=0,newMinute=0;
+
+        try {
+
+            java.util.Date date = df.parse(String.valueOf(Hour));
+
+            Calendar c = Calendar.getInstance();
+
+            c.setTime(date);
+
+
+
+            newHour = c.get(Calendar.HOUR_OF_DAY);
+            //newMinute = c.get(Calendar.MINUTE);
+
+
+
+
+        } catch (ParseException e) {
+
+        // TODO Auto-generated catch block
+
+            e.printStackTrace();
+
+        }
+
+        return String.format("%s",HOUR[newHour]);
+    }
+
+    public String timesetMinuteAlert(String hour) {
+        this.Minute = hour;
+        String HOUR[] = {
+
+                "00" ,"01" ,"02" ,"03",
+                "04" ,"05" ,"06" ,"07",
+                "08" ,"09" ,"10" ,"11",
+                "12" ,"13" ,"14" ,"15",
+                "16" ,"17" ,"18" ,"19",
+                "20" ,"21" ,"22" ,"23"};
+
+
+        String MINUTE[] = {
+                "00","01","02","03","04","05",
+                "06","07","08","09","10",
+                "11","12","13","14","15",
+                "16","17","18","19","20",
+                "21","22","23","24","25",
+                "26","27","28","29","30",
+                "31","32","33","34","35",
+                "36","37","38","39","40",
+                "41","42","43","44","45",
+                "46","47","48","49","50",
+                "51","52","53","54","55",
+                "56","57","58","59"
+        };
+
+        DateFormat df = new SimpleDateFormat("mm");
+        //TimeFormatException tf = new TimeFormatException("");
+
+        int newHour=0,newMinute=0;
+
+        try {
+
+            java.util.Date date = df.parse(String.valueOf(Minute));
+
+            Calendar c = Calendar.getInstance();
+
+            c.setTime(date);
+
+
+
+            //newHour = c.get(Calendar.HOUR_OF_DAY);
+            newMinute = c.get(Calendar.MINUTE);
+
+
+
+
+        } catch (ParseException e) {
+
+        // TODO Auto-generated catch block
+
+            e.printStackTrace();
+
+        }
+
+        return String.format("%s",MINUTE[newMinute]);
+    }
 }

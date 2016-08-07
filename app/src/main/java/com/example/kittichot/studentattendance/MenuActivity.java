@@ -11,6 +11,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -81,7 +83,8 @@ public class MenuActivity extends ActionBarActivity
             dialog.setMessage("Do you want to exit?");
             dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
-                    finish();
+                    //finish();
+                    finishAffinity();
                 }
             });
 
@@ -240,6 +243,12 @@ public class MenuActivity extends ActionBarActivity
                 intent9.putExtra("Username", putExtraUSer);
                 startActivity(intent9);
                 break;
+            case 9:
+                mTitle = getString(R.string.title_section9);
+                createListPUTEXTRA();
+                Intent intent10 = new Intent(MenuActivity.this, setting.class);
+                startActivity(intent10);
+                break;
         }
     }
 
@@ -288,6 +297,25 @@ public class MenuActivity extends ActionBarActivity
             ((MenuActivity) activity).onSectionAttached(
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.global,menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Intent intent = new Intent(MenuActivity.this, AlarmSET.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_exit:
+                finishAffinity();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

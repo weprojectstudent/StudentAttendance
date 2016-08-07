@@ -119,7 +119,7 @@ public class ShowListHomeworkCheck extends ActionBarActivity {
                 final Dialog dialog = new Dialog(ShowListHomeworkCheck.this);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setTitle("รายการของห้อง :"+getIntentRoom +" หัวข้อการบ้าน :"+strNameHW);
-                dialog.setContentView(R.layout.alertcustomHW);
+                dialog.setContentView(R.layout.alertcustomhw);
                 dialog.setCancelable(true);
                 Button button1 = (Button)dialog.findViewById(R.id.button7HW);
                 button1.setOnClickListener(new View.OnClickListener() {
@@ -169,7 +169,7 @@ NameStudent = objStudentTABLE.ListNameStudent(IDStudentforDate[i]);
             }
 
         }
-                objListViewDialog = (ListView) dialog.findViewById(R.id.listViewStatusCheckname);
+                objListViewDialog = (ListView) dialog.findViewById(R.id.listViewStatusChecknameHW);
                 MyadapterListcheckstatus myadapterListcheckstatus = new MyadapterListcheckstatus(ShowListHomeworkCheck.this,arrayListIDstudent, arrayListnamestudent, arrayListsurnamestudent,arrayListNOstudent, arrayListStatus);
                 objListViewDialog.setAdapter(myadapterListcheckstatus);
                 dialog.show();

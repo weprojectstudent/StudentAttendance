@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.kittichot.studentattendance" >
+    package="com.example.kittichot.studentattendance">
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -22,17 +22,29 @@
         android:icon="@drawable/logo"
         android:label="  StudentAttendance"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <service
             android:name=".notifications.NotificationIntentService"
             android:enabled="true"
             android:exported="false" />
+        <service
+            android:name=".notificationsAlert.NotificationIntentServiceAlert"
+            android:enabled="true"
+            android:exported="false" />
 
+        <receiver android:name=".broadcast_receivers_alert.NotificationEventReceiverAlert" />
+        <receiver android:name=".broadcast_receivers_alert.NotificationServiceStarterReceiverAlert">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.TIME_SET" />
+            </intent-filter>
+        </receiver>
         <receiver
             android:name=".AlarmReceiver"
             android:process=":remote" />
         <receiver android:name=".broadcast_receivers.NotificationEventReceiver" />
-        <receiver android:name=".broadcast_receivers.NotificationServiceStarterReceiver" >
+        <receiver android:name=".broadcast_receivers.NotificationServiceStarterReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.TIMEZONE_CHANGED" />
@@ -43,7 +55,7 @@
         <activity
             android:name=".MainActivity"
             android:icon="@drawable/logo"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -154,37 +166,46 @@
         <activity
             android:name=".UpdateAlert"
             android:logo="@drawable/logo"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:label="แก้ไขบันทึก"/>
         <activity
             android:name=".HideAlertActivity"
             android:logo="@drawable/logo"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:label="แสดงรายการบันทึกที่ซ่อน"/>
         <activity
             android:name=".SelectTermToCheckname"
             android:logo="@drawable/logo"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:label="เลือกวิชาและห้องเรียนที่ต้องการเช็คชื่อ"/>
         <activity
             android:name=".SelectHomeWork"
             android:logo="@drawable/logo"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:label="เลือกการบ้านและห้องเรียนที่ต้องการเช็คชื่อ"/>
         <activity
             android:name=".CheckNameHomeWorkActivity"
             android:logo="@drawable/logo"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:label="เช็คชื่อส่งการบ้าน"/>
         <activity
             android:name=".EditPasswordActivity"
             android:logo="@drawable/logo"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:label="ลืมรหัสผ่าน/เปลี่ยนรหัสผ่าน"/>
         <activity
             android:name=".ShowCheckname"
             android:logo="@drawable/logo"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:label="เลือกสำหรับดูสถานะการเข้าเรียน"/>
         <activity
             android:name=".ShowCheckNameListDate"
             android:label="@string/title_activity_show_check_name_list_date" />
         <activity android:name=".SelectHomeworkToLIstCheckname" />
-        <activity android:name=".ShowListHomeworkCheck" >
-        </activity>
+        <activity android:name=".ShowListHomeworkCheck"
+            android:label="รายการการบ้านทั้งหมดในการเช์คชื่อ"/>
+        <activity android:name=".setting"
+            android:label="ตั้งค่า"></activity>
     </application>
 
 </manifest>
