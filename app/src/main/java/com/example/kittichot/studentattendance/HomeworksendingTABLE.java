@@ -179,6 +179,17 @@ public class HomeworksendingTABLE {
 
     }
 
+    public long AddAttendanceHomeworksyn(int IDHWS,int ID,int IDREGIS ,String DATE,String STATUS){
+        ContentValues objContentValues = new ContentValues();
+        objContentValues.put(COLUMN_ID_HOMEWORKSENDING, IDHWS);
+        objContentValues.put(COLUMN_ID_HOMEWORK, ID);
+        objContentValues.put(COLUMN_ID_REGISTER, IDREGIS);
+        objContentValues.put(COLUMN_DATESENT_HOMEWORKSENDING, DATE);
+        objContentValues.put(COLUMN_STATUS_HOMEWORKSENDING, STATUS);
+        return writerSQLite.insert(HOMEWORKSENDING_TABLE, null, objContentValues);
+
+    }
+
     public long updateAttendanceHomework(int ID,int IDREGIS ,String DATE,String STATUS) {
         ContentValues objValues = new ContentValues();
         objValues.put(COLUMN_STATUS_HOMEWORKSENDING,STATUS);

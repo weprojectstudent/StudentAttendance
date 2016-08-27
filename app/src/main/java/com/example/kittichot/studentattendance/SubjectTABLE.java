@@ -191,6 +191,23 @@ public class SubjectTABLE {
         objCursor.close();
         return strListHindSubject;
     }
+    public String[] iDSubjectloop(String id) {
+
+        String strListHindSubject[] = null;
+        Cursor objCursor = readSqLite.query(SUBJECT_TABLE,
+                new String[]{COLUMN_SUBJECT_STATUS,COLUMN_SUBJECT_ID,COLUMN_SUBJECT_NAME},
+                COLUMN_SUBJECT_ID+"=?",new String[]{id},null,null,null);
+        objCursor.moveToFirst();
+        strListHindSubject = new String[objCursor.getCount()];
+        for (int i = 0; i < objCursor.getCount(); i++) {
+
+            strListHindSubject[i] = objCursor.getString(objCursor.getColumnIndex(COLUMN_SUBJECT_ID));
+            objCursor.moveToNext();
+
+        }//for
+        objCursor.close();
+        return strListHindSubject;
+    }
 
     //addValue subjectTable
     public void addValueToSubject(String strID,String strNAME,int intStatus) {

@@ -3,9 +3,12 @@ package com.example.kittichot.studentattendance;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -13,7 +16,15 @@ import android.widget.TextView;
 
 import com.example.kittichot.studentattendance.testEMAIL.SendMail;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
@@ -70,7 +81,7 @@ public class EditPasswordActivity extends ActionBarActivity implements View.OnCl
             sm.execute();
         } catch (Exception e) {
             MyAlertDialog objMyAlert = new MyAlertDialog();
-            objMyAlert.errorDiaLog(EditPasswordActivity.this, "ไม่มี Username ", "ไม่มี " + strUsername + " ในฐานข้อมูล");
+            objMyAlert.errorDiaLog(EditPasswordActivity.this, "ไม่พบ Username ", "ไม่มี " + strUsername + " ในฐานข้อมูล");
         }
         }
     }
@@ -99,6 +110,26 @@ public class EditPasswordActivity extends ActionBarActivity implements View.OnCl
 
         } else if (strPasswordChoose.equals(strRandoms)) {
             objTeacherTABLE.updateTeacherPass(strUsername, strPassChoose);
+            if (Build.VERSION.SDK_INT > 9) {
+                StrictMode.ThreadPolicy myPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                StrictMode.setThreadPolicy(myPolicy);
+
+            }
+            //up Value
+            try {
+                ArrayList<NameValuePair> objNameValuePairs = new ArrayList<NameValuePair>();
+                objNameValuePairs.add(new BasicNameValuePair("isAdd", "true"));
+                objNameValuePairs.add(new BasicNameValuePair("username",strUsername ));
+                objNameValuePairs.add(new BasicNameValuePair("password", strPassChoose));
+
+                HttpClient objHttpClient = new DefaultHttpClient();
+                HttpPost objHttpPost = new HttpPost("http://we-projectstudent.com/StudentAttendance/editpasswordteacher.php");
+                objHttpPost.setEntity(new UrlEncodedFormEntity(objNameValuePairs, "UTF-8"));
+                objHttpClient.execute(objHttpPost);
+               /// Toast.makeText(AddSubjectActivity.this, "Update Subject" + strEditid, Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Log.d("AddSubject", "UPDATE MY SQL ==>" + e.toString());
+            }
             AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(EditPasswordActivity.this);
             myAlertDialog.setTitle("Change Password" + strUsername);
             myAlertDialog.setIcon(R.drawable.user);

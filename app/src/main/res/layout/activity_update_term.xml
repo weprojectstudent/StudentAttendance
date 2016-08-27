@@ -26,7 +26,7 @@
         android:text="รหัสเทอม"
         android:id="@+id/textView5"
         android:layout_below="@+id/textView2"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:textSize="25dp" />
 
     <EditText
@@ -45,7 +45,7 @@
         android:text="รหัสวิชา"
         android:id="@+id/textView6"
         android:layout_below="@+id/editTxtUpIDTerm"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:textSize="25dp" />
 
     <Spinner
@@ -63,16 +63,17 @@
         android:text="ปีการศึกษา"
         android:id="@+id/textView7"
         android:layout_below="@+id/spinnerUp"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:layout_marginTop="10dp" />
 
-    <EditText
-        android:layout_width="@dimen/btnSize"
+    <Spinner
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editTxtYearUp"
+        android:id="@+id/spinner7"
         android:layout_below="@+id/textView7"
         android:layout_marginTop="10dp"
         android:background="#ffffff"
-        android:textSize="30dp" />
+        android:backgroundTintMode="src_over" />
 
     <Button
         android:layout_width="match_parent"
@@ -80,7 +81,7 @@
         android:text="บันทึก"
         android:onClick="updateValue"
         android:id="@+id/button3"
-        android:layout_below="@+id/editTxtYearUp"
-        android:layout_margin="25dp" />
+        android:layout_margin="25dp"
+        android:layout_below="@+id/spinner7" />
 
 </RelativeLayout>

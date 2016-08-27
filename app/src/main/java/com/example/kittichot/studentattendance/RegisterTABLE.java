@@ -244,6 +244,15 @@ public class RegisterTABLE {
 
         return writerSQLite.insert(REGISTER_TABLE, null, objContentValues);
     } // addValueStudent()
+    public long addValueRegistersyn(String regisID,String TERMID,int IDSTUDENT ,int Status) {
+        ContentValues objContentValues = new ContentValues();
+        objContentValues.put(COLUMN_ID_REGISTER, regisID);
+        objContentValues.put(COLUMN_TERMID_REGISTER, TERMID);
+        objContentValues.put(COLUMN_STUDENTID_REGISTER, IDSTUDENT);
+        objContentValues.put(COLUMN_STATUS_REGISTER, Status);
+
+        return writerSQLite.insert(REGISTER_TABLE, null, objContentValues);
+    } // addValueStudent()
 
     public void Delete(String id){
         writerSQLite.delete(REGISTER_TABLE, COLUMN_ID_REGISTER+"=?",new String[]{id});

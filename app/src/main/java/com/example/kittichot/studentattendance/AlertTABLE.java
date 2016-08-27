@@ -41,6 +41,18 @@ public class AlertTABLE {
 
         return writerSQLite.insert(ALERT_TABLE, null, objContentValues);
     }
+    public long addValueALERTsyn(String id,String title,String detail,String savethedate,String dateofalert,String teacher_username,int hwsent_status) {
+        ContentValues objContentValues = new ContentValues();
+        objContentValues.put(COLUMN_ID_ALERT,id);
+        objContentValues.put(COLUMN_TITLE_ALERT, title);
+        objContentValues.put(COLUMN_DETAILS_ALERT, detail);
+        objContentValues.put(COLUMN_SAVADATE_ALERT, savethedate);
+        objContentValues.put(COLUMN_DATEALERT_ALERT, dateofalert);
+        objContentValues.put(COLUMN_USERNAME_TEACHER_ALERT, teacher_username);
+        objContentValues.put(COLUMN_STATUS_ALERT, hwsent_status);
+
+        return writerSQLite.insert(ALERT_TABLE, null, objContentValues);
+    }
     public void updateValueALERT(int ID,String title,String detail,String savethedate,String dateofalert,String teacher_username,int hwsent_status) {
         ContentValues values = new ContentValues();
         //values.put(COLUMN_ID_ALERT,ID);

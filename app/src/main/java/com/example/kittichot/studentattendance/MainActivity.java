@@ -62,7 +62,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         objTeachdetailTABLE = new TeachdetailTABLE(this);
         objStudentTABLE = new StudentTABLE(this);
         objDateThai = new DateThai();
-        addValue();
+        //addValue();
     }//onCreate
     public boolean exportDatabaseFile(Context context, String dbName) {
         try {

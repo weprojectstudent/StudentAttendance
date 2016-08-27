@@ -11,15 +11,17 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class UpdateTermActivity extends ActionBarActivity {
     private SubjectTABLE objSubjectTABLE;
     private TeachdetailTABLE objTeachdetailTABLE;
     private String[] stredtID,strName;
-    private EditText strIDTerm,strTermYear;
+    private EditText strIDTerm;
     private String getstrSpinner,getstrtxtIDTerm,getstrTermYear,getstrUsernameTeacher,getStatus;
-    private Spinner spinTerm;
+    private Spinner spinTerm,spinTermYear;
     private String putExtraIdSubject, putExtraUser;
+    private DateThai dateThai;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +30,7 @@ public class UpdateTermActivity extends ActionBarActivity {
         objTeachdetailTABLE = new TeachdetailTABLE(this);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        dateThai = new DateThai();
         //BindWidget
         BindWidget();
         //getIntent
@@ -50,7 +53,7 @@ public class UpdateTermActivity extends ActionBarActivity {
 
     public void updateValue(View view) {
         getstrtxtIDTerm = strIDTerm.getText().toString().trim();
-        getstrTermYear = strTermYear.getText().toString().trim();
+
         getstrUsernameTeacher = putExtraUser;
         getStatus = "0";
 
@@ -123,21 +126,47 @@ public class UpdateTermActivity extends ActionBarActivity {
 
     private void BindWidget() {
         strIDTerm = (EditText) findViewById(R.id.editTxtUpIDTerm);
-        strTermYear = (EditText) findViewById(R.id.editTxtYearUp);
+        spinTermYear = (Spinner) findViewById(R.id.spinner7);
         spinTerm = (Spinner) findViewById(R.id.spinnerUp);
 
     }
 
     private void getIntentHide() {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        final ArrayList<String> arrayList = new ArrayList<String>();
+        int stryear = Integer.parseInt(dateThai.yearThai(year+1)) ;
+        for (int i = 1; i < 7; i++) {
+            if (i % 2 == 0) {
+                arrayList.add(stryear + "-2");
+                stryear--;
+            } else {
+                arrayList.add(stryear + "-1");
+            }
+
+        }
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                this,android.R.layout.simple_dropdown_item_1line,arrayList);
+        spinTermYear.setAdapter(arrayAdapter);
         String strgetIDterm = getIntent().getExtras().getString("IDTerm");
         String strgetSubject = getIntent().getExtras().getString("IDSubject");
         String strgetTerm = getIntent().getExtras().getString("TermYear");
         String strIDteacher = getIntent().getExtras().getString("IDTeacher");
         strIDTerm.setText(strgetIDterm);
-        strTermYear.setText(strgetTerm);
+        spinTermYear.setSelection(arrayAdapter.getPosition(strgetTerm));
         putExtraIdSubject = strgetSubject;
         putExtraUser = strIDteacher;
-        //Toast.makeText(UpdateTermActivity.this, "Update Subject" + putExtraIdSubject, Toast.LENGTH_SHORT).show();
+        spinTermYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                getstrTermYear = arrayList.get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
 

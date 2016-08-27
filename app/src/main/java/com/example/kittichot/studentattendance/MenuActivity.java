@@ -1,9 +1,11 @@
 package com.example.kittichot.studentattendance;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,8 +13,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -84,6 +84,8 @@ public class MenuActivity extends ActionBarActivity
             dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     //finish();
+                    Intent intent11 = new Intent(MenuActivity.this, MainActivity.class);
+                    startActivity(intent11);
                     finishAffinity();
                 }
             });
@@ -176,6 +178,7 @@ public class MenuActivity extends ActionBarActivity
                 .commit();
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
@@ -249,6 +252,11 @@ public class MenuActivity extends ActionBarActivity
                 Intent intent10 = new Intent(MenuActivity.this, setting.class);
                 startActivity(intent10);
                 break;
+            case 10:
+                mTitle = getString(R.string.title_section9);
+               // createListPUTEXTRA();
+                onBackPressed();
+                break;
         }
     }
 
@@ -298,13 +306,8 @@ public class MenuActivity extends ActionBarActivity
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
-    @Override
-    public boolean onCreateOptionsMenu(android.view.Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.global,menu);
-        return true;
-    }
-    @Override
+
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
@@ -316,7 +319,7 @@ public class MenuActivity extends ActionBarActivity
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     @Override
     protected void onResume() {

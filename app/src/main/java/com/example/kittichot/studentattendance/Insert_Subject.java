@@ -55,11 +55,16 @@ public class Insert_Subject extends ActionBarActivity {
     public void onClickCheck(View view) {
 
             edtID = edtIDsub.getText().toString().trim();
+                String[] strings = objSubjectTABLE.iDSubjectloop(edtID);
             edtName = edtNameSub.getText().toString();
                 //checkZero
                 if (edtID.equals("")||edtName.equals("")) {
                     MyAlertDialog objMyAlertDialog = new MyAlertDialog();
                     objMyAlertDialog.errorDiaLog(Insert_Subject.this,"กรอกไม่ครบทุกช่อง","กรุณากรอกข้อความให้ครบที่ช่อง");
+
+                } else if (strings.length>=1) {
+                    MyAlertDialog objMyAlertDialog = new MyAlertDialog();
+                    objMyAlertDialog.errorDiaLog(Insert_Subject.this,"มีรหัสวิชานี้แล้ว","กรุณากรอกรหัสวิชาที่ไม่ซ้ำกัน");
 
                 } else {
                     stredtID = edtID;

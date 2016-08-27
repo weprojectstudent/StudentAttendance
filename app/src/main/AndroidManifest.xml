@@ -53,8 +53,7 @@
         </receiver>
 
         <activity
-            android:name=".MainActivity"
-            android:icon="@drawable/logo"
+            android:name=".SplashScreenActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -62,6 +61,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:banner="@drawable/logo"
+            android:label="Login"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Menu"
             android:banner="@drawable/logo"
@@ -165,46 +169,48 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".UpdateAlert"
+            android:label="แก้ไขบันทึก"
             android:logo="@drawable/logo"
-            android:screenOrientation="portrait"
-            android:label="แก้ไขบันทึก"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".HideAlertActivity"
+            android:label="แสดงรายการบันทึกที่ซ่อน"
             android:logo="@drawable/logo"
-            android:screenOrientation="portrait"
-            android:label="แสดงรายการบันทึกที่ซ่อน"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SelectTermToCheckname"
+            android:label="เลือกวิชาและห้องเรียนที่ต้องการเช็คชื่อ"
             android:logo="@drawable/logo"
-            android:screenOrientation="portrait"
-            android:label="เลือกวิชาและห้องเรียนที่ต้องการเช็คชื่อ"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SelectHomeWork"
+            android:label="เลือกการบ้านและห้องเรียนที่ต้องการเช็คชื่อ"
             android:logo="@drawable/logo"
-            android:screenOrientation="portrait"
-            android:label="เลือกการบ้านและห้องเรียนที่ต้องการเช็คชื่อ"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".CheckNameHomeWorkActivity"
+            android:label="เช็คชื่อส่งการบ้าน"
             android:logo="@drawable/logo"
-            android:screenOrientation="portrait"
-            android:label="เช็คชื่อส่งการบ้าน"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".EditPasswordActivity"
+            android:label="ลืมรหัสผ่าน/เปลี่ยนรหัสผ่าน"
             android:logo="@drawable/logo"
-            android:screenOrientation="portrait"
-            android:label="ลืมรหัสผ่าน/เปลี่ยนรหัสผ่าน"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ShowCheckname"
+            android:label="เลือกสำหรับดูสถานะการเข้าเรียน"
             android:logo="@drawable/logo"
-            android:screenOrientation="portrait"
-            android:label="เลือกสำหรับดูสถานะการเข้าเรียน"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ShowCheckNameListDate"
             android:label="@string/title_activity_show_check_name_list_date" />
         <activity android:name=".SelectHomeworkToLIstCheckname" />
-        <activity android:name=".ShowListHomeworkCheck"
-            android:label="รายการการบ้านทั้งหมดในการเช์คชื่อ"/>
-        <activity android:name=".setting"
+        <activity
+            android:name=".ShowListHomeworkCheck"
+            android:label="รายการการบ้านทั้งหมดในการเช์คชื่อ" />
+        <activity
+            android:name=".setting"
             android:label="ตั้งค่า"></activity>
     </application>
 

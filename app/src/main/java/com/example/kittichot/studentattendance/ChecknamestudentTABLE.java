@@ -171,6 +171,15 @@ public class ChecknamestudentTABLE {
         return writerSQLite.insert(CHECKNAMESTUDENT_TABLE, null, objContentValues);
 
     }//addValueCheckname
+     public long addValueChecknamesyn(String checkname_id,int register_id,String checkname_date,int checkname_status){
+        ContentValues objContentValues = new ContentValues();
+        objContentValues.put(COLUMN_ID_CHECKNAME,checkname_id);
+        objContentValues.put(COLUMN_ID_REGISTER, register_id);
+        objContentValues.put(COLUMN_DATE_CHECKNAME, checkname_date);
+        objContentValues.put(COLUMN_STATUS_CHECKNAME, checkname_status);
+        return writerSQLite.insert(CHECKNAMESTUDENT_TABLE, null, objContentValues);
+
+    }//addValueCheckname
 
     public long updateValueCheckname(int register_id,String checkname_date,int checkname_status){
         ContentValues values = new ContentValues();

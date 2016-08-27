@@ -8,4 +8,6 @@
     <color name="colorbg1">#7cffffff</color>
     <color name="colorbgnotcome">#61ff6c6c</color>
     <color name="colorbgcome">#967ff96d</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>
